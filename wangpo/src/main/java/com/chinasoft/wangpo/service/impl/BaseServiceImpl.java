@@ -1,7 +1,10 @@
 package com.chinasoft.wangpo.service.impl;
 
+import com.chinasoft.wangpo.dao.AccountDao;
 import com.chinasoft.wangpo.entity.Page;
 import com.chinasoft.wangpo.service.BaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.List;
 
@@ -9,8 +12,10 @@ import java.util.List;
  * @author Makise
  *        date 2017-06-14 17:06
  */
-public class BserServiceImpl<T>implements BaseService<T> {
+public class BaseServiceImpl<T>implements BaseService<T> {
 
+    @Autowired
+    protected AccountDao accountDao;
 
     @Override
     public int insert(T entity) {
