@@ -8,7 +8,7 @@ import com.chinasoft.wangpo.entity.Account;
  *
  * @author Makise
  */
-public interface AccountDao {
+public interface AccountDao extends BaseDao<Account> {
 
     public Account userLogin(Account account);
 }
