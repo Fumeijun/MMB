@@ -11,4 +11,9 @@ import com.chinasoft.wangpo.entity.Account;
 public interface AccountDao {
 
     public Account userLogin(Account account);
+    
+   // 添加好友
+    public Account addFriends(Account account);
+		
+	
 }

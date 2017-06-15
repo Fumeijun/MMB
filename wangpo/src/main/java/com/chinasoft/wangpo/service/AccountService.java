@@ -16,5 +16,5 @@ public interface AccountService extends BaseService<Account> {
      */
     public Account userLogin(Account account);
 
-
+    public Account addFriends(Account account);
 }
