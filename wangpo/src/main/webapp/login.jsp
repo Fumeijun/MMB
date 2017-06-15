@@ -29,7 +29,6 @@
             },{
                 text:'重置',
                 handler:function(){
-                    //alert('重置表单');
                     $('#ff').form('reset');
                 }
             }]
@@ -47,11 +46,11 @@
     <form id="ff" action="${proPath}/account/admin.do" method="post">
         <div>
             <%--@declare id="name"--%><label for="name">账号:</label>
-            <input class="easyui-validatebox" type="text" name="accLogin" data-options="required:true" />
+            <input class="easyui-validatebox" type="text" name="adm_name" data-options="required:true" />
         </div>
         <div>
             <%--@declare id="email"--%><label for="email">密码:</label>
-            <input class="easyui-validatebox" type="text" name="accPass" data-options="required:true" />
+            <input class="easyui-validatebox" type="text" name="adm_pwd" data-options="required:true" />
         </div>
         <div style="color:red" >${requestScope.errMsg}</div>
     </form>
