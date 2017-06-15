@@ -35,7 +35,6 @@ public class AccountAction {
     }
 
     @RequestMapping("/loginOut")
-    @ResponseBody
     public String loginOut(){
         return null;
     }
