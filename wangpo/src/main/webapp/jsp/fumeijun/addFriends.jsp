@@ -7,7 +7,7 @@
 <title>添加好友</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/addAction/addFriends.do">
+	<form action="${pageContext.request.contextPath}/addAction/addFriends.do" method="post">
 	好友名称:<input name="acc_lname" value="">
 	性别:<input name="acc_gender" value=""><br>
 	年龄:<input name="acc_age" value="">

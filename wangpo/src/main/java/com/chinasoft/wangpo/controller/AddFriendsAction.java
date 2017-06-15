@@ -24,7 +24,10 @@ public class AddFriendsAction {
 	@RequestMapping("/addFriends")
 	public String  AddFriends(HttpServletRequest req, HttpServletResponse resp,Account account) {
 		Account reAccount=accountService.addFriends(account);
-		
+		reAccount.getAcc_id();
+		reAccount.getAcc_gender();
+		reAccount.getAcc_age();
+		reAccount.getAcc_edu();
 		
 		
 		return null;
