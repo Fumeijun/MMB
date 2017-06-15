@@ -24,14 +24,19 @@ public class AccountAction {
 
     @RequestMapping("/user")
     public String userLogin(HttpServletRequest req, HttpServletResponse resp,Account account){
-        Account reaccount=accountService.userLogin(account);
+        
         return null;
     }
-
+    
     @RequestMapping("/admin")
     public String adminLogin(HttpServletRequest req, HttpServletResponse resp,Admin admin){
-
-        return null;
+    	String name=admin.getAdm_name();
+    	String pwd=admin.getAdm_pwd();
+    	Admin ad1=accountService.amdinLogin(admin);
+        if (ad1 != null) {
+			return "登陆成功";
+		}else
+			return "登陆失败";
     }
 
     @RequestMapping("/loginOut")
