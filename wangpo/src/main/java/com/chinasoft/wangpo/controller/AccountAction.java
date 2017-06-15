@@ -30,13 +30,8 @@ public class AccountAction {
     
     @RequestMapping("/admin")
     public String adminLogin(HttpServletRequest req, HttpServletResponse resp,Admin admin){
-    	String name=admin.getAdm_name();
-    	String pwd=admin.getAdm_pwd();
-    	Admin ad1=accountService.amdinLogin(admin);
-        if (ad1 != null) {
-			return "登陆成功";
-		}else
-			return "登陆失败";
+		return null;
+    	
     }
 
     @RequestMapping("/loginOut")

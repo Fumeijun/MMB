@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasoft.wangpo.dao.UserLoginDao">
+
+	<resultMap id="userlogin" type="com.chinasoft.wangpo.entity.Account" >
+		<id column="acc_id" property="acc_id"/>
+		<result column="acc_lname" property="acc_lname"/>
+		<result column="acc_rname" property="acc_rname"/>
+		<result column="acc_gender" property="acc_gender"/>
+		<result column="acc_pwd" property="acc_pwd"/>
+		<result column="acc_age" property="acc_age"/>
+		<result column="acc_pro" property="acc_pro"/>
+		<result column="acc_pay" property="acc_pay"/>
+		<result column="acc_edu" property="acc_edu"/>
+		<result column="acc_idno" property="acc_idno"/>
+		<result column="acc_tel" property="acc_tel"/>
+		<result column="acc_qq" property="acc_qq"/>
+		<result column="acc_mail" property="acc_mail"/>
+		<result column="acc_hob" property="acc_hob"/>
+		<result column="acc_ava" property="acc_ava"/>
+		<result column="acc_addr" property="acc_addr"/>
+		<result column="acc_marr" property="acc_marr"/>
+		<result column="acc_page" property="acc_page"/>
+		<result column="acc_chi" property="acc_chi"/>
+		<result column="acc_sta" property="acc_sta"/>
+		<result column="acc_type" property="acc_type"/>
+	</resultMap>
+	
+	<select id="userLogin" parameterType="com.chinasoft.wangpo.entity.Account" resultMap="userlogin">
+		select * from account where acc_lname=#{acc_lname} and acc_pwd=#{acc_pwd}
+	</select>
+	
+</mapper>
