@@ -12,5 +12,11 @@ import com.chinasoft.wangpo.entity.Admin;
 public interface AccountDao extends BaseDao<Account> {
 
     public Account userLogin(Account account);
+
+   
+   // 添加好友
+    public Account addFriends(Account account);
+	
+	
     public Admin adminLogin(Admin admin);
 }

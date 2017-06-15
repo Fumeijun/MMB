@@ -17,8 +17,12 @@ public interface AccountService extends BaseService<Account> {
      */
     public Account userLogin(Account account);
 
+
+    public Account addFriends(Account account);
+
     /**
      * 管理员登录接口
      */
     public Admin amdinLogin(Admin admin);
+
 }

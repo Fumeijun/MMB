@@ -19,9 +19,14 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
     }
 
 	@Override
+	public Account addFriends(Account account) {
+		// TODO Auto-generated method stub
+		return accountDao.addFriends(account);
+
 	public Admin amdinLogin(Admin admin) {
 		// TODO Auto-generated method stub
 		return accountDao.adminLogin(admin);
+
 	}
 
 }
