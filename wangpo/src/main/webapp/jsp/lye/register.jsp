@@ -6,13 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript"> 
-	$(function check() {
+	$(function() {
 		//判断账户是否存在
 		$("#rname").change(function(){
 			$.ajax({
-				ulr:"../../account/",
+				ulr:"${proPath}/register/checkName.do",
 				data:{
-					rname:$("#rname").val()
+					"rname":$("#rname").val()
 				},
 				type:"post",
 				dataType:"json",
