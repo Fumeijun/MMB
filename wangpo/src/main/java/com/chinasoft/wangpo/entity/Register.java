@@ -5,13 +5,13 @@ package com.chinasoft.wangpo.entity;
  *         date 2017-06-15 14:27
  */
 public class Register {
-    private Integer rid;
-    private String rname;
-    private String rpwd;
-    private Integer rage;
-    private String ridno;
-    private String rtel;
-    private Integer rsta;
+    private Integer rid; //注册id 不由用户填写
+    private String rname; //注册名
+    private String rpwd; //注册密码
+    private Integer rage; // 注册年龄
+    private String ridno; // 身份证号码
+    private String rtel; //注册电话号码
+    private Integer rsta; // 状态
 
     public Integer getRid() {
         return rid;

@@ -6,9 +6,9 @@ package com.chinasoft.wangpo.entity;
  * @author Makise
  */
 public class Admin {
-    private Integer adm_id;
-    private String adm_name;
-    private String adm_pwd;
+    private Integer adm_id; //管理员ID
+    private String adm_name; //管理员名
+    private String adm_pwd;  //管理员密码
 
     public Integer getAdm_id() {
         return adm_id;

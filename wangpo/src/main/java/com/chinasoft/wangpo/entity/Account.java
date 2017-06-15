@@ -1,5 +1,7 @@
 package com.chinasoft.wangpo.entity;
 
+import java.util.List;
+
 /**
  * @author Makise
  *         date 2017-06-14 16:15
@@ -26,6 +28,7 @@ public class Account {
     private Integer acc_chi; //有几个小孩
     private Integer acc_sta; //用户状态
     private Integer acc_type; //用户类型（黄钻、蓝钻...）
+    private List<Account> flist; //好友列表
 
     public Integer getAcc_id() {
         return acc_id;
@@ -195,6 +198,14 @@ public class Account {
         this.acc_type = acc_type;
     }
 
+    public List<Account> getFlist() {
+        return flist;
+    }
+
+    public void setFlist(List<Account> flist) {
+        this.flist = flist;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -219,6 +230,7 @@ public class Account {
                 ", acc_chi=" + acc_chi +
                 ", acc_sta=" + acc_sta +
                 ", acc_type=" + acc_type +
+                ", flist=" + flist +
                 '}';
     }
 }
