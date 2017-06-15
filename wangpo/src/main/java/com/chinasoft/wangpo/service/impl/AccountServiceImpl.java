@@ -1,6 +1,7 @@
 package com.chinasoft.wangpo.service.impl;
 
 import com.chinasoft.wangpo.entity.Account;
+import com.chinasoft.wangpo.entity.Admin;
 import com.chinasoft.wangpo.service.AccountService;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,11 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
     public Account userLogin(Account account) {
         return accountDao.userLogin(account);
     }
+
+	@Override
+	public Admin amdinLogin(Admin admin) {
+		// TODO Auto-generated method stub
+		return accountDao.adminLogin(admin);
+	}
 
 }

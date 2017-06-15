@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chinasoft.wangpo.dao.AccountDao" >
-
-
+	<resultMap  id="accresult"  type="account">
+	<id column="id" property="id"/>
+	<result column="adm_id" property="adm_id"/>
+	<result column="adm_name" property="adm_name"/>
+	<result column="adm_pwd" property="adm_pwd"/>
+	</resultMap>
+	
+	<!-- 接收管理员的账户和密码 -->
+	<select id="userLogin" resultMap="accresult">
+		select * from admin where adm_name=#{adm_name} and adm_pwd=#{adm_pwd}
+	</select>
 </mapper>
