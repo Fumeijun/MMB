@@ -43,7 +43,7 @@
 
 <body>
 <div id="dd">
-    <form id="ff" action="${proPath}/account/admin.do" method="post">
+    <form id="ff" action="${proPath}/loginAction/admin.do" method="post">
         <div>
             <%--@declare id="name"--%><label for="name">账号:</label>
             <input class="easyui-validatebox" type="text" name="adm_name" data-options="required:true" />
