@@ -16,5 +16,12 @@ public class UserLoginServiceimp extends BaseServiceImpl<Account> implements Use
 		// TODO Auto-generated method stub
 		return userLoginDao.userLogin(account);
 	}
+	
+	//修改失败次数
+	@Override
+	public int accountAddCisu(Account account) {
+		// TODO Auto-generated method stub
+		return userLoginDao.userAddCiSu(account);
+	}
 
 }

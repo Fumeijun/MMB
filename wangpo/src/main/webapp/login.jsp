@@ -43,14 +43,14 @@
 
 <body>
 <div id="dd">
-    <form id="ff" action="${proPath}/loginAction/admin.do" method="post">
+    <form id="ff" action="${proPath}/loginAction/user.do" method="post">
         <div>
             <%--@declare id="name"--%><label for="name">账号:</label>
-            <input class="easyui-validatebox" type="text" name="adm_name" data-options="required:true" />
+            <input class="easyui-validatebox" type="text" name="acc_lname" data-options="required:true" />
         </div>
         <div>
             <%--@declare id="email"--%><label for="email">密码:</label>
-            <input class="easyui-validatebox" type="text" name="adm_pwd" data-options="required:true" />
+            <input class="easyui-validatebox" type="text" name="acc_pwd" data-options="required:true" />
         </div>
         <div style="color:red" >${requestScope.errMsg}</div>
     </form>
