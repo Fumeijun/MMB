@@ -48,7 +48,7 @@ public class LoginAction {
 	        if (ad2 != null) {
 	        	req.getSession().setAttribute("admin", ad2);
 	        	System.out.println("登陆成功");
-				return "../login.jsp";
+				return "forward:../jsp/admin/adminMain.jsp";
 			}else{
 				req.setAttribute("errMsg", "输入的账户名或者密码错误");
 				return "../login.jsp";
