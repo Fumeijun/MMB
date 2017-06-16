@@ -1,6 +1,7 @@
 package com.chinasoft.wangpo.service.impl;
 
 import com.chinasoft.wangpo.dao.AccountDao;
+import com.chinasoft.wangpo.dao.BaseDao;
 import com.chinasoft.wangpo.entity.Page;
 import com.chinasoft.wangpo.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class BaseServiceImpl<T>implements BaseService<T> {
 
     @Autowired
     protected AccountDao accountDao;
+    @Autowired
+    protected BaseDao<T> baseDao;
 
     @Override
     public int insert(T entity) {

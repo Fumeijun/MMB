@@ -28,6 +28,15 @@
 	<select id="addFriends" parameterType="com.chinasoft.wangpo.entity.Account" resultMap="accountResults">
 		select * from account  
 	</select>
-	
+
+	<!-- 通过关键字分页查询，返回列表数据 -->
+	<select id="selectPageList" parameterType="page"
+			resultMap="accountResults">
+		select * from account where acc_name like #{keyWord} limit #{start},#{rows}
+	</select>
+	<!-- 通过关键字分页查询，返回总记录数 -->
+	<select id="selectPageCount" parameterType="page" resultType="integer">
+		select count(0) from account where sup_name like #{keyWord}
+	</select>
 	
 </mapper>

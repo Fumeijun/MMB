@@ -1,191 +1,97 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Makise
-  Date: 2017-06-16
-  Time: 上午 9:25
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../../common/common.jsp"%>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta name="copyright" content="All Rights Reserved, Copyright (C) 2017, wangpo, Ltd." />
-    <title>王婆牵线婚恋交友网</title>
+    <title>Admin Page</title>
+    <script type="text/javascript">
+        $(function() {
+            $("a[title]").click(function() {
+                var title = this.title;
+                var text = this.href;
+                alert(title);
+                //如果对应的面板已经存在，就选择，否则就添加新的面板
+                if($('#tt').tabs("exists",title)){
+                    $('#tt').tabs("select",title);
+                }else{
+                    $('#tt').tabs('add',{
+                        title:title,
+                        //selected: true,
+                        closable:true,
+                        content:"<iframe src='"+text+"' title='"+this.title+"' height='100%' width='100%' frameborder='0px' ></iframe>"
+                    });
+                }
+
+                return false;
+
+            });
+        });
+
+    </script>
+
 </head>
 <body class="easyui-layout">
-<!-- begin of header -->
-<div class="wu-header" data-options="region:'north',border:false,split:true">
-    <div class="wu-header-left">
-        <h1>王婆牵线婚恋交友</h1>
-    </div>
-    <div class="wu-header-right">
-        <p><strong class="easyui-tooltip" >${sessionScope.admin.adm_name}</strong>，欢迎您！</p>
-        <p><a href="#">网站首页</a>|<a href="#">帮助中心</a>|<a href="${proPath}/loginAction/loginOut.do">安全退出</a></p>
-    </div>
+<!-- ---------------------------------头部信息---------------------------------------------- -->
+<div data-options="region:'north',title:'王婆婚恋交友系统',split:true" style="height:150px;">
+    <h1>欢迎您：${sessionScope.admin.adm_name}</h1>
 </div>
-<!-- end of header -->
-<!-- begin of sidebar -->
-<div class="wu-sidebar" data-options="region:'west',split:true,border:true,title:'导航菜单'">
-    <div class="easyui-accordion" data-options="border:false,fit:true">
-        <div title="快捷菜单" data-options="iconCls:'icon-application-cascade'" style="padding:5px;" >
-            <ul class="easyui-tree wu-side-tree">
-                <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">我的信息</a></li>
-                <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">会员重置</a></li>
-                <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">搜索好友</a></li>
-                <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">参加活动</a></li>
-            </ul>
-        </div>
-        <div title="我的好友" data-options="iconCls:'icon-application-form-edit'" style="padding:5px;">
-            <ul class="easyui-tree wu-side-tree">
-                <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="layout-3.html" iframe="0">查看我的好友</a></li>
-                <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">添加好友</a></li>
-                <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">查看附近的人</a></li>
 
+<!-- -------------------------------------导航菜单------------------------------------- -->
+<div data-options="region:'west',title:'导航菜单',split:true" style="width:180px;">
+
+    <div id="aa" class="easyui-accordion" style="width: auto;height:auto;">
+
+        <div title="用户管理">
+            <!-- list-style: none去左边的点；text-decoration: none：去超链接下划线,title用来区分后继定位这里的超链接 -->
+            <ul style="list-style: none;padding: 0px;margin:0px;width: auto;height: auto">
+                <li style="padding: 6px; width: auto;height: auto"><a href="${proPath}/jsp/admin/accList.jsp"  title="查看用户"
+                                             style="text-decoration: none;display: block;font-weight:bold;">查看用户</a>
+                </li>
+                <li style="padding: 6px;width: auto;height: auto"><a href="#" title="管理注册用户"
+                                             style="text-decoration: none;display: block;font-weight:bold;" >管理注册用户</a>
+                </li>
             </ul>
         </div>
-        <div title="活动中心" data-options="iconCls:'icon-creditcards'" style="padding:5px;">
-            <ul class="easyui-tree wu-side-tree">
-                <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-application-osx-error"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
+
+        <div title="活动管理">
+            <!-- list-style: none去左边的点；text-decoration: none：去超链接下划线,title用来区分后继定位这里的超链接 -->
+            <ul style="list-style: none;padding: 0px;margin:0px;width: auto;height: auto">
+                <li style="padding: 6px;width: auto;height: auto"><a href="#" title="查看活动"
+                                             style="text-decoration: none;display: block;font-weight:bold;">查看活动</a>
+                </li>
+                <li style="padding: 6px;width: auto;height: auto"><a href="#" title="管理活动"
+                                             style="text-decoration: none;display: block;font-weight:bold;" >管理活动</a>
+                </li>
             </ul>
         </div>
-        <div title="王婆一对一" data-options="iconCls:'icon-cart'" style="padding:5px;">
-            <ul class="easyui-tree wu-side-tree">
-                <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-application-osx-error"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-            </ul>
-        </div>
-        <div title="会员管理" data-options="iconCls:'icon-bricks'" style="padding:5px;">
-            <ul class="easyui-tree wu-side-tree">
-                <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-application-osx-error"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-            </ul>
-        </div>
-        <div title="发布轮播窗口" data-options="iconCls:'icon-chart-curve'" style="padding:5px;">
-            <ul class="easyui-tree wu-side-tree">
-                <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-application-osx-error"><a href="javascript:void(0)" data-icon="icon-application-osx-error" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
+
+        <div title="王婆一对一">
+            <!-- list-style: none去左边的点；text-decoration: none：去超链接下划线,title用来区分后继定位这里的超链接 -->
+            <ul style="list-style: none;padding: 0px;margin:0px;width: auto;height: auto">
+                <li style="padding: 6px;width: auto;height: auto"><a href="#" title="王婆一对一"
+                                             style="text-decoration: none;display: block;font-weight:bold;">王婆一对一</a>
+                </li>
+                <li style="padding: 6px;width: auto;height: auto"><a href="#" title="王婆一对一"
+                                             style="text-decoration: none;display: block;font-weight:bold;" >王婆一对一</a>
+                </li>
             </ul>
         </div>
     </div>
+
 </div>
-<!-- end of sidebar -->
-<!-- begin of main -->
-<div class="wu-main" data-options="region:'center'">
-    <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
-        <div title="首页" data-options="href:'${proPath}/login.jsp',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
+
+<!-- -----------------------------------主要内容-------------------------------------------------- -->
+<div data-options="region:'center',title:'主要内容'" style="padding:5px;background:#eee;">
+
+    <div id="tt" class="easyui-tabs" data-options="fit:true" style="width:500px;height:250px;">
+        <div title="系统简介" style="padding:20px;">
+           王婆婚恋交友系统。。。。。。
+        </div>
     </div>
-    <!-- end of main -->
-    <!-- begin of footer -->
-    <div class="wu-footer" data-options="region:'south',border:true,split:true">
-        &copy; 2017 Wu All Rights Reserved
-    </div>
+
+
 </div>
-<!-- end of footer -->
-<script type="text/javascript">
-    $(function(){
-        $('.wu-side-tree a').bind("click",function(){
-            var title = $(this).text();
-            var url = $(this).attr('data-link');
-            var iconCls = $(this).attr('data-icon');
-            var iframe = $(this).attr('iframe')==1?true:false;
-            addTab(title,url,iconCls,iframe);
-        });
-    })
-
-    /**
-     * Name 载入树形菜单
-     */
-    $('#wu-side-tree').tree({
-        url:'../../common/menu.json',
-        cache:false,
-        onClick:function(node){
-            var url = node.attributes['url'];
-            if(url==null || url == ""){
-                return false;
-            }
-            else{
-                addTab(node.text, url, '', node.attributes['iframe']);
-            }
-        }
-    });
-
-    /**
-     * Name 选项卡初始化
-     */
-    $('#wu-tabs').tabs({
-        tools:[{
-            iconCls:'icon-reload',
-            border:false,
-            handler:function(){
-                $('#wu-datagrid').datagrid('reload');
-            }
-        }]
-    });
-
-    /**
-     * Name 添加菜单选项
-     * Param title 名称
-     * Param href 链接
-     * Param iconCls 图标样式
-     * Param iframe 链接跳转方式（true为iframe，false为href）
-     */
-    function addTab(title, href, iconCls, iframe){
-        var tabPanel = $('#wu-tabs');
-        if(!tabPanel.tabs('exists',title)){
-            var content = '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:100%;"></iframe>';
-            if(iframe){
-                tabPanel.tabs('add',{
-                    title:title,
-                    content:content,
-                    iconCls:iconCls,
-                    fit:true,
-                    cls:'pd3',
-                    closable:true
-                });
-            }
-            else{
-                tabPanel.tabs('add',{
-                    title:title,
-                    href:href,
-                    iconCls:iconCls,
-                    fit:true,
-                    cls:'pd3',
-                    closable:true
-                });
-            }
-        }
-        else
-        {
-            tabPanel.tabs('select',title);
-        }
-    }
-    /**
-     * Name 移除菜单选项
-     */
-    function removeTab(){
-        var tabPanel = $('#wu-tabs');
-        var tab = tabPanel.tabs('getSelected');
-        if (tab){
-            var index = tabPanel.tabs('getTabIndex', tab);
-            tabPanel.tabs('close', index);
-        }
-    }
-</script>
+<div id="win"></div>
 </body>
 </html>

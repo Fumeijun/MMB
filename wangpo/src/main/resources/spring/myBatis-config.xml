@@ -4,10 +4,9 @@
 <configuration>
     <!-- 通过别名简化对类的使用 -->
 
-    <!--<typeAliases>
-        <typeAlias type="com.chinasoft.wangpo.entity" alias="entity" />
-        &lt;!&ndash;<package name="com.chinasoft.wangpo.entity"/>&ndash;&gt;
-    </typeAliases>-->
+    <typeAliases>
+        <package name="com.chinasoft.wangpo.entity"/>
+    </typeAliases>
 
     <!-- 	<mappers>
             <mapper resource="cn/itcast/entity/DeptMapper.xml" />
