@@ -1,18 +1,19 @@
 package com.chinasoft.wangpo.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.chinasoft.wangpo.entity.Account;
+import com.chinasoft.wangpo.entity.Admin;
+import com.chinasoft.wangpo.service.AdminLoginService;
+import com.chinasoft.wangpo.service.UserLoginService;
+import com.chinasoft.wangpo.util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.chinasoft.wangpo.entity.Account;
-import com.chinasoft.wangpo.entity.Admin;
-import com.chinasoft.wangpo.service.AccountService;
-import com.chinasoft.wangpo.service.AdminLoginService;
-import com.chinasoft.wangpo.service.UserLoginService;
-import com.chinasoft.wangpo.util.Md5Util;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/loginAction")
@@ -55,7 +56,14 @@ public class LoginAction {
 	    }
 
 	    @RequestMapping("/loginOut")
-	    public String loginOut(){
-	        return null;
+	    public String loginOut(HttpServletRequest req, HttpServletResponse resp){
+			HttpSession hs=req.getSession();
+			hs.invalidate();
+	        return "../login.jsp";
 	    }
+
+	    @RequestMapping("/administrator")
+	    public String toAdminLogin(){
+	    	return "forward:../jsp/admin/adminLogin.jsp";
+		}
 }
