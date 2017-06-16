@@ -5,4 +5,7 @@
 	<select id="checkName" resultType="int" parameterType="com.chinasoft.wangpo.entity.Register">
 		select count(*) from account where acc_lname=#{rname}
 	</select>
+	<select id="checkIdcard" resultType="int" parameterType="com.chinasoft.wangpo.entity.Register">
+		select count(*) from account where acc_idno=#{ridno}
+	</select>
 </mapper>

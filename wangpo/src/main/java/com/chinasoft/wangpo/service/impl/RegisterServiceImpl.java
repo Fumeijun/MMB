@@ -10,10 +10,14 @@ import com.chinasoft.wangpo.service.RegisterService;
 public class RegisterServiceImpl extends BaseServiceImpl<Register> implements RegisterService{
 	@Autowired
 	private RegisterDao registerDao;
-	@Override
+	@Override//检查账户名称
 	public int checkName(Register register) {
 		// TODO Auto-generated method stub
 		return registerDao.checkName(register);
 	}
-
+	@Override//检查身份证
+	public int checkIdcard(Register register) {
+		// TODO Auto-generated method stub
+		return registerDao.checkIdcard(register);
+	}
 }

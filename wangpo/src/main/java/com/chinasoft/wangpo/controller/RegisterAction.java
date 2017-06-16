@@ -29,4 +29,15 @@ public class RegisterAction {
 		}
 		return message;
 	}
+	//检查身份证
+	@RequestMapping(value="/checkIdcard",produces="application/json;charset=utf-8")
+	public String checkIdcard(HttpServletRequest req,HttpServletResponse resp,Register register){
+		System.out.println(register.getRid()+","+register.getRname()+","+register.getRpwd()+","+register.getRidno());
+		String message="";
+		int count=registerService.checkIdcard(register);
+		if(count>0){
+			message="{\"mes\":\"该身份证已被注册\"}";
+		}
+		return message;
+	}
 }

@@ -42,6 +42,30 @@
 				return;
 			}
 		})
+		//判断身份证是否合格
+		$("#ridno").change(function(){
+			var isIDCard=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+			if(isIDCard.test($("#ridno").val())!=true){
+				$("#sp3").html("请输入正确的身份证号");
+			}else{
+				$.ajax({
+					url:"${proPath}/register/checkName.do",
+					data:{
+						ridno:$("#ridno").val()
+					},
+					type:"post",
+					dataType:"json",
+					success:function(respData){
+						alert("请求成功:"+respData.mes);
+						$("#sp3").html(respData.mes)
+					},
+					error:function(err){
+						alert("${proPath}/register/checkName.do");
+						alert("请求失败"+err);
+					}
+				})
+			}
+		})
 	})
 </script>
 <title>用户注册</title>
@@ -52,7 +76,7 @@
 		<samp>密&nbsp;&nbsp;码:</samp><input type="text" id="rpwd"><br>
 		<samp>确认密码:</samp><input type="text" id="qrpwd"><samp id="sp1"></samp><br>
 		<samp>年&nbsp;&nbsp;龄:</samp><input type="text" id="rage"><samp id="sp2"></samp><br>
-		<samp>身份证号码:</samp><input type="text" id="ridno"><br>
+		<samp>身份证号码:</samp><input type="text" id="ridno"><samp id="sp3"></samp><br>
 		<samp>电&nbsp;&nbsp;话:</samp><input type="text" id="rtel"><br>
 		<samp>审核状态:</samp><input type="text" id="rsta"><br>
 	</form>
