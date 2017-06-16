@@ -27,7 +27,11 @@
 	</resultMap>
 	
 	<select id="userLogin" parameterType="com.chinasoft.wangpo.entity.Account" resultMap="userlogin">
-		select * from account where acc_lname=#{acc_lname} and acc_pwd=#{acc_pwd}
+		select * from account where acc_lname=#{acc_lname}
 	</select>
+	
+	<update id="userAddCiSu" parameterType="com.chinasoft.wangpo.entity.Account">
+		update account set acc_sta=#{acc_sta} where acc_lname=#{acc_lname}
+	</update>
 	
 </mapper>
