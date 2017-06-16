@@ -19,14 +19,14 @@
     </div>
     <div class="wu-header-right">
         <p><strong class="easyui-tooltip" >${sessionScope.admin.adm_name}</strong>，欢迎您！</p>
-        <p><a href="#">网站首页</a>|<a href="#">帮助中心</a>|<a href="#">安全退出</a></p>
+        <p><a href="#">网站首页</a>|<a href="#">帮助中心</a>|<a href="${proPath}/loginAction/loginOut.do">安全退出</a></p>
     </div>
 </div>
 <!-- end of header -->
 <!-- begin of sidebar -->
 <div class="wu-sidebar" data-options="region:'west',split:true,border:true,title:'导航菜单'">
     <div class="easyui-accordion" data-options="border:false,fit:true">
-        <div title="快捷菜单" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">
+        <div title="快捷菜单" data-options="iconCls:'icon-application-cascade'" style="padding:5px;" >
             <ul class="easyui-tree wu-side-tree">
                 <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">我的信息</a></li>
                 <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">会员重置</a></li>
@@ -88,12 +88,12 @@
 <!-- begin of main -->
 <div class="wu-main" data-options="region:'center'">
     <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
-        <div title="首页" data-options="href:'temp/layout-1.html',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
+        <div title="首页" data-options="href:'${proPath}/login.jsp',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
     </div>
     <!-- end of main -->
     <!-- begin of footer -->
     <div class="wu-footer" data-options="region:'south',border:true,split:true">
-        &copy; 2013 Wu All Rights Reserved
+        &copy; 2017 Wu All Rights Reserved
     </div>
 </div>
 <!-- end of footer -->
@@ -112,7 +112,7 @@
      * Name 载入树形菜单
      */
     $('#wu-side-tree').tree({
-        url:'temp/menu.php',
+        url:'../../common/menu.json',
         cache:false,
         onClick:function(node){
             var url = node.attributes['url'];

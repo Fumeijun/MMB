@@ -18,7 +18,7 @@
         <h1>王婆牵线婚恋交友</h1>
     </div>
     <div class="wu-header-right">
-        <p><strong class="easyui-tooltip" >${sessionScope.admin.adm_name}</strong>，欢迎您！</p>
+        <p><strong class="easyui-tooltip" >${sessionScope.user.acc_rname}</strong>，欢迎您！</p>
         <p><a href="#">网站首页</a>|<a href="#">帮助中心</a>|<a href="#">安全退出</a></p>
     </div>
 </div>
@@ -88,7 +88,7 @@
 <!-- begin of main -->
 <div class="wu-main" data-options="region:'center'">
     <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
-        <div title="首页" data-options="href:'temp/layout-1.html',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
+        <div title="首页" data-options="href:'wangpo/login.jsp',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
     </div>
 <!-- end of main -->
 <!-- begin of footer -->
