@@ -27,7 +27,7 @@
 	</resultMap>
 	
 	<select id="userLogin" parameterType="com.chinasoft.wangpo.entity.Account" resultMap="userlogin">
-		select * from account where acc_lname=#{acc_lname}
+		select * from account where acc_lname=#{acc_lname} or acc_tel=#{acc_lname}
 	</select>
 	
 	<update id="userAddCiSu" parameterType="com.chinasoft.wangpo.entity.Account">
