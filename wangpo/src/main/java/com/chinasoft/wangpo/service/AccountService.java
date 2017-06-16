@@ -1,6 +1,8 @@
 package com.chinasoft.wangpo.service;
 
 
+import java.util.List;
+
 import com.chinasoft.wangpo.entity.Account;
 import com.chinasoft.wangpo.entity.Admin;
 

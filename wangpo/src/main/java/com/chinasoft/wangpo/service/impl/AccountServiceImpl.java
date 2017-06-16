@@ -3,6 +3,9 @@ package com.chinasoft.wangpo.service.impl;
 import com.chinasoft.wangpo.entity.Account;
 import com.chinasoft.wangpo.entity.Admin;
 import com.chinasoft.wangpo.service.AccountService;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,18 +21,23 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
         return accountDao.userLogin(account);
     }
 
-	@Override
-	public Account addFriends(Account account) {
-		// TODO Auto-generated method stub
 
-		return accountDao.addFriends(account);
-	}
 
 
 	public Admin amdinLogin(Admin admin) {
 		// TODO Auto-generated method stub
 		return accountDao.adminLogin(admin);
 
+	}
+
+
+
+
+	@Override
+	public Account addFriends(Account account) {
+		// TODO Auto-generated method stub
+		System.out.println("jksd"+account);
+		return accountDao.addFriends(account);
 	}
 
 
