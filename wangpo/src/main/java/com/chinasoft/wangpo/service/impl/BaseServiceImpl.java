@@ -1,5 +1,6 @@
 package com.chinasoft.wangpo.service.impl;
 
+
 import com.chinasoft.wangpo.dao.*;
 import com.chinasoft.wangpo.entity.Page;
 import com.chinasoft.wangpo.service.BaseService;
@@ -25,6 +26,8 @@ public class BaseServiceImpl<T>implements BaseService<T> {
     protected AdminDao adminDao;
     @Autowired
     protected AccountDao accountDao;
+    @Autowired//自动装配RegisterDao实现类的对象
+	protected RegisterDao registerDao;
 
     protected BaseDao<T> baseDao;
 
