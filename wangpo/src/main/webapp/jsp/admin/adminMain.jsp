@@ -45,7 +45,7 @@
         <div title="用户管理">
             <!-- list-style: none去左边的点；text-decoration: none：去超链接下划线,title用来区分后继定位这里的超链接 -->
             <ul style="list-style: none;padding: 0px;margin:0px;width: auto;height: auto">
-                <li style="padding: 6px; width: auto;height: auto"><a href="${proPath}/jsp/admin/accList.jsp"  title="查看用户"
+                <li style="padding: 6px; width: auto;height: auto"><a href="${proPath}/jsp/admin/account/accList.jsp"  title="查看用户"
                                              style="text-decoration: none;display: block;font-weight:bold;">查看用户</a>
                 </li>
                 <li style="padding: 6px;width: auto;height: auto"><a href="#" title="管理注册用户"

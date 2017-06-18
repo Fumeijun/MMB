@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Makise
  */
-@Service("/accountService")
+@Service("accountService")
 public class AccountServiceImpl extends BaseServiceImpl<Account> implements AccountService{
 
 	@Override

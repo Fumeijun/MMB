@@ -1,5 +1,6 @@
 package com.chinasoft.wangpo.controller;
 
+import com.chinasoft.wangpo.entity.Account;
 import com.chinasoft.wangpo.entity.Page;
 import com.chinasoft.wangpo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/account")
-public class AccountAction {
+public class AccountAction{
 
     @Autowired
     private AccountService accountService;
     
-    @RequestMapping("/queryAll")
+    @RequestMapping("/selectPageUseDyc")
     @ResponseBody
-    public Page queryAll(){
-        
-        return null;
+    public Object selectPageUseDyc(Page<Account> page,Account account){
+        page.setParamEntity(account);
+        return accountService.selectPageUseDyc(page).getPageMap();
     }
 }

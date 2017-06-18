@@ -8,8 +8,7 @@ import com.chinasoft.wangpo.entity.Register;
 import com.chinasoft.wangpo.service.RegisterService;
 @Service("registerService")
 public class RegisterServiceImpl extends BaseServiceImpl<Register> implements RegisterService{
-	@Autowired
-	private RegisterDao registerDao;
+
 	@Override
 	public int checkName(Register register) {
 		// TODO Auto-generated method stub

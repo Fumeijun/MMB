@@ -5,7 +5,7 @@
   Time: 下午 4:45
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../../common/common.jsp"%>
+<%@include file="../../../common/common.jsp"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -19,7 +19,7 @@
     <script type="text/javascript">
         $(function(){
             $('#dg').datagrid({
-                url:'${proPath}/account/queryAll.do', //支持多个条件的分页查询
+                url:'${proPath}/account/selectPageUseDyc.do', //支持多个条件的分页查询
                 striped:true,
                 fitColumns:true,
                 idField:'acc_id',
@@ -151,9 +151,6 @@
 
             $('#acc_tel').searchbox({
                 searcher:function(value,name){
-                    alert(value + "," + name);
-                    alert($('#acc_rname').val());
-
                     $('#dg').datagrid('load',{
                         acc_rname:likeParam($('#acc_rname').val()),
                         acc_tel:likeParam(value)
