@@ -1,33 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chinasoft.wangpo.dao.AccountDao" >
-
 	<resultMap id="accountResults" type="com.chinasoft.wangpo.entity.Account" >
 	<id column="acc_id" property="acc_id"/>
-	<result column="acc_lname" property="acc_lname"/>
-	<result column="acc_rname" property="acc_rname"/>
-	<result column="acc_gender" property="acc_gender"/>
-	<result column="acc_pwd" property="acc_pwd"/>
-	<result column="acc_age" property="acc_age"/>
-	<result column="acc_pro" property="acc_pro"/>
-	<result column="acc_pay" property="acc_pay"/>
-	<result column="acc_edu" property="acc_edu"/>
-	<result column="acc_idno" property="acc_idno"/>
-	<result column="acc_tel" property="acc_tel"/>
-	<result column="acc_qq" property="acc_qq"/>
-	<result column="acc_mail" property="acc_mail"/>
-	<result column="acc_hob" property="acc_hob"/>
-	<result column="acc_ava" property="acc_ava"/>
-	<result column="acc_addr" property="acc_addr"/>
-	<result column="acc_marr" property="acc_marr"/>
-	<result column="acc_page" property="acc_page"/>
-	<result column="acc_chi" property="acc_chi"/>
-	<result column="acc_sta" property="acc_sta"/>
-	<result column="acc_type" property="acc_type"/>
+	<result column="acc_lname" property="acc_lname" jdbcType="VARCHAR"/>
+	<result column="acc_rname" property="acc_rname" jdbcType="VARCHAR"/>
+	<result column="acc_gender" property="acc_gender" jdbcType="VARCHAR"/>
+	<result column="acc_pwd" property="acc_pwd" jdbcType="VARCHAR"/>
+	<result column="acc_age" property="acc_age" jdbcType="INTEGER"/>
+	<result column="acc_pro" property="acc_pro" jdbcType="VARCHAR"/>
+	<result column="acc_pay" property="acc_pay" jdbcType="VARCHAR"/>
+	<result column="acc_edu" property="acc_edu" jdbcType="VARCHAR"/>
+	<result column="acc_idno" property="acc_idno" jdbcType="VARCHAR"/>
+	<result column="acc_tel" property="acc_tel" jdbcType="VARCHAR"/>
+	<result column="acc_qq" property="acc_qq" jdbcType="VARCHAR"/>
+	<result column="acc_mail" property="acc_mail" jdbcType="VARCHAR"/>
+	<result column="acc_hob" property="acc_hob" jdbcType="VARCHAR"/>
+	<result column="acc_ava" property="acc_ava" jdbcType="VARCHAR"/>
+	<result column="acc_addr" property="acc_addr" jdbcType="VARCHAR"/>
+	<result column="acc_marr" property="acc_marr" jdbcType="VARCHAR"/>
+	<result column="acc_page" property="acc_page" jdbcType="VARCHAR"/>
+	<result column="acc_chi" property="acc_chi" jdbcType="INTEGER"/>
+	<result column="acc_sta" property="acc_sta" jdbcType="INTEGER"/>
+	<result column="acc_type" property="acc_type" jdbcType="INTEGER"/>
 	</resultMap>
 	<select id="addFriends" parameterType="com.chinasoft.wangpo.entity.Account" resultMap="accountResults">
 		select * from account  
 	</select>
-	
+
+	<!-- 通过多条件分页查询，返回列表数据 -->
+	<select id="selectPageListUseDyc" parameterType="page"
+			resultMap="accountResults">
+		select * from account
+		<where>
+
+			<if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
+				and acc_rname like #{paramEntity.acc_rname}
+			</if>
+			<if test="not(paramEntity.acc_tel==null or  paramEntity.acc_tel=='')">
+				and acc_tel like #{paramEntity.acc_tel}
+			</if>
+		</where>
+		limit #{start},#{rows}
+	</select>
+	<!-- 通过多条件分页查询，返回总记录数 -->
+	<select id="selectPageCountUseDyc" parameterType="page" resultType="integer">
+		select count(0) from account
+		<where>
+			<if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
+				and acc_rname like #{paramEntity.acc_rname}
+			</if>
+			<if test="not(paramEntity.acc_tel==null or  paramEntity.acc_tel=='')">
+				and acc_tel like #{paramEntity.acc_tel}
+			</if>
+		</where>
+	</select>
 	
 </mapper>

@@ -1,7 +1,6 @@
 package com.chinasoft.wangpo.service.impl;
 
 import com.chinasoft.wangpo.entity.Account;
-import com.chinasoft.wangpo.entity.Admin;
 import com.chinasoft.wangpo.service.AccountService;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +9,8 @@ import org.springframework.stereotype.Service;
  *
  * @author Makise
  */
-@Service("/accountService")
+@Service("accountService")
 public class AccountServiceImpl extends BaseServiceImpl<Account> implements AccountService{
-
-    @Override
-    public Account userLogin(Account account) {
-        return accountDao.userLogin(account);
-    }
 
 	@Override
 	public Account addFriends(Account account) {
@@ -25,12 +19,6 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
 		return accountDao.addFriends(account);
 	}
 
-
-	public Admin amdinLogin(Admin admin) {
-		// TODO Auto-generated method stub
-		return accountDao.adminLogin(admin);
-
-	}
 
 
 }

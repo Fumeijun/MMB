@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.chinasoft.wangpo.dao.UserLoginDao">
+<mapper namespace="com.chinasoft.wangpo.dao.UserDao">
 
 	<resultMap id="userlogin" type="com.chinasoft.wangpo.entity.Account" >
 		<id column="acc_id" property="acc_id"/>

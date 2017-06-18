@@ -2,7 +2,6 @@ package com.chinasoft.wangpo.service;
 
 
 import com.chinasoft.wangpo.entity.Account;
-import com.chinasoft.wangpo.entity.Admin;
 
 /**
  * 2017-06-14 23:02
@@ -11,16 +10,11 @@ import com.chinasoft.wangpo.entity.Admin;
  */
 public interface AccountService extends BaseService<Account> {
     /**
-     * 普通用户登陆接口
-     * @param account
-     * @return
+     *
+     * 用户
      */
-    public Account userLogin(Account account);
-
 
     public Account addFriends(Account account);
-    
-    public Admin amdinLogin(Admin admin);
 
 
 }
