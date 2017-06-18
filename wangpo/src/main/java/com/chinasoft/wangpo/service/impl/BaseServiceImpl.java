@@ -21,8 +21,6 @@ public class BaseServiceImpl<T>implements BaseService<T> {
     @Autowired
     protected UserDao userDao;
     @Autowired
-    protected RegisterDao registerDao;
-    @Autowired
     protected AdminDao adminDao;
     @Autowired
     protected AccountDao accountDao;
