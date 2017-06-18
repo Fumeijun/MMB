@@ -1,6 +1,8 @@
 package com.chinasoft.wangpo.dao;
 
 
+import java.util.List;
+
 import com.chinasoft.wangpo.entity.Account;
 
 /**
