@@ -29,18 +29,16 @@
         <property name="mapperLocations" value="classpath:com/chinasoft/wangpo/dao/mapper/*.xml"/>
     </bean>
 
+    <!--&lt;!&ndash; 对模型视图名称的解析，即在模型视图名称添加前后缀 &ndash;&gt;
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/jsp/" p:suffix=".jsp" />-->
+
+    <!-- 支持上传文件 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
     <!-- 配置事务管理器,管理数据源事务处理-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
-
-    <!--&lt;!&ndash; 视图解析器ViewResolver &ndash;&gt;-->
-    <!--&lt;!&ndash; 解析jsp,默认支持jstl &ndash;&gt;-->
-    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>-->
-        <!--<property name="prefix" value="/WEB-INF/jsp/" />-->
-        <!--<property name="suffix" value=".jsp" />-->
-    <!--</bean>-->
 
     <!-- 配置事务通知 -->
     <tx:advice id="advice" transaction-manager="transactionManager">
@@ -70,4 +68,9 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
+
+    <!-- 配置SessionTemplate，已封装了繁琐的数据操作-->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
 </beans>

@@ -4,7 +4,6 @@ package com.chinasoft.wangpo.dao;
 import java.util.List;
 
 import com.chinasoft.wangpo.entity.Account;
-import com.chinasoft.wangpo.entity.Admin;
 
 /**
  * 2017-06-15 00:24
@@ -13,11 +12,7 @@ import com.chinasoft.wangpo.entity.Admin;
  */
 public interface AccountDao extends BaseDao<Account> {
 
-    public Account userLogin(Account account);
+   // 添加好友
+    public Account addFriends(Account account);
 
- 
-    public Admin adminLogin(Admin admin);
-
-
-	public Account addFriends(Account account);
 }

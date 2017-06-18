@@ -1,12 +1,13 @@
 package com.chinasoft.wangpo.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author Makise
  *         date 2017-06-14 16:15
  */
-public class Account {
+public class Account implements Serializable{
     private Integer acc_id;  //用户id
     private String acc_lname; //用户名
     private String acc_pwd;   //密码
@@ -28,7 +29,7 @@ public class Account {
     private Integer acc_chi; //有几个小孩
     private Integer acc_sta; //用户状态
     private Integer acc_type; //用户类型（黄钻、蓝钻...）
-    private List<Account> flist; //好友列表
+    //private List<Account> flist; //好友列表
 
     public Integer getAcc_id() {
         return acc_id;
@@ -43,7 +44,7 @@ public class Account {
     }
 
     public void setAcc_lname(String acc_lname) {
-        this.acc_lname = acc_lname;
+        this.acc_lname = acc_lname==null?null:acc_lname.trim();
     }
 
     public String getAcc_pwd() {
@@ -51,7 +52,7 @@ public class Account {
     }
 
     public void setAcc_pwd(String acc_pwd) {
-        this.acc_pwd = acc_pwd;
+        this.acc_pwd = acc_pwd==null?null:acc_pwd.trim();
     }
 
     public String getAcc_rname() {
@@ -59,7 +60,7 @@ public class Account {
     }
 
     public void setAcc_rname(String acc_rname) {
-        this.acc_rname = acc_rname;
+        this.acc_rname = acc_rname==null?null:acc_rname.trim();
     }
 
     public String getAcc_gender() {
@@ -67,7 +68,7 @@ public class Account {
     }
 
     public void setAcc_gender(String acc_gender) {
-        this.acc_gender = acc_gender;
+        this.acc_gender = acc_gender==null?null:acc_gender.trim();
     }
 
     public Integer getAcc_age() {
@@ -83,7 +84,7 @@ public class Account {
     }
 
     public void setAcc_pro(String acc_pro) {
-        this.acc_pro = acc_pro;
+        this.acc_pro = acc_pro==null?null:acc_pro.trim();
     }
 
     public String getAcc_pay() {
@@ -91,7 +92,7 @@ public class Account {
     }
 
     public void setAcc_pay(String acc_pay) {
-        this.acc_pay = acc_pay;
+        this.acc_pay = acc_pay==null?null:acc_pay.trim();
     }
 
     public String getAcc_edu() {
@@ -198,13 +199,6 @@ public class Account {
         this.acc_type = acc_type;
     }
 
-    public List<Account> getFlist() {
-        return flist;
-    }
-
-    public void setFlist(List<Account> flist) {
-        this.flist = flist;
-    }
 
     @Override
     public String toString() {
@@ -230,7 +224,6 @@ public class Account {
                 ", acc_chi=" + acc_chi +
                 ", acc_sta=" + acc_sta +
                 ", acc_type=" + acc_type +
-                ", flist=" + flist +
                 '}';
     }
 }
