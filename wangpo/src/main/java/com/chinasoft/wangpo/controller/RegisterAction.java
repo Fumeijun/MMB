@@ -1,15 +1,15 @@
 package com.chinasoft.wangpo.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.chinasoft.wangpo.entity.Page;
+import com.chinasoft.wangpo.entity.Register;
+import com.chinasoft.wangpo.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.chinasoft.wangpo.entity.Register;
-import com.chinasoft.wangpo.service.RegisterService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/register")
@@ -41,6 +41,13 @@ public class RegisterAction {
 		}
 		return message;
 	}
+  
+	@RequestMapping("/selectPageReview")
+	@ResponseBody
+	public Object  selectPageReview(Page<Register> page, Register register){
+		page.setParamEntity(register);
+		return registerService.selectPageUseDyc(page).getPageMap();
+  }
 	//注册
 	@RequestMapping(value="/regmethod",produces="application/json;charset=utf-8")
 	@ResponseBody
