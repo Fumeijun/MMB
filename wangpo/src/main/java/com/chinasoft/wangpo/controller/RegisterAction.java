@@ -20,7 +20,7 @@ public class RegisterAction {
 	@RequestMapping(value="/checkName",produces="application/json;charset=utf-8")
 	@ResponseBody//返回json格式
 	public String checkName(HttpServletRequest req,HttpServletResponse resp,Register register) {
-		System.out.println("lalala"+register.getRname());
+		//System.out.println("lalala"+register.getRname());
 		String message="";
 		int count=registerService.checkName(register);
 		//System.out.println(count);
@@ -40,5 +40,15 @@ public class RegisterAction {
 			message="{\"mess\":\"该手机号已被注册\"}";
 		}
 		return message;
+	}
+	//注册
+	@RequestMapping(value="/regmethod",produces="application/json;charset=utf-8")
+	@ResponseBody
+	public void reg(HttpServletRequest req,HttpServletResponse resp,Register register){
+		System.out.println(register.getRname()+","+register.getRpwd()+","+register.getRtel());
+		int count=registerService.insert(register);
+		if(count>0){
+			
+		}
 	}
 }

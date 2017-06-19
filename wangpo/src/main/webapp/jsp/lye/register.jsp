@@ -11,7 +11,6 @@
 		$("#rname").mouseleave(function(){	
 			var namenull=$("#rname").val()
 			if(namenull==""||namenull==null){
-				
 				$("#sp").html("请输入账户名")
 				return;
 			}else{
@@ -36,18 +35,22 @@
 		})
 		//判断两次密码是否一致
 		$("#qrpwd").mouseleave(function(){
+			var pwdnull=$("#rpwd").val()
 			if($("#rpwd").val()!=$("#qrpwd").val()){
 				$("#sp1").html("两次输入密码不一致");
 			}else{
+				$("#sp1").html("");
 				return;
 			}
 		})
 		//判断年龄
 		$("#rage").mouseleave(function(){
+			var agenull=$("#rage").val()
 			var NL=/^(1[89]|[2-8][0-9]|90)$/;
 			if(NL.test($("#rage").val())!=true){
 				$("#sp2").html("请输入正确的年龄");
 			}else{
+				$("#sp2").html("");
 				return;
 			}
 		})
@@ -57,6 +60,7 @@
 			if(isIDCard.test($("#ridno").val())!=true){
 				$("#sp3").html("请输入正确的身份证号");
 			}else{
+				$("#sp3").html("");
 				return;
 			}
 		})
@@ -67,6 +71,7 @@
 				$("#sp4").html("请输入正确的手机号");
 				return;
 			}else{
+				$("#sp4").html("");
 				$.ajax({
 					url:"${proPath}/register/checktel.do",
 					data:{
@@ -90,15 +95,16 @@
 			if($("#rname").val()==""||$("#rpwd").val()==""||$("#qrpwd").val()==""||
 					$("#rage").val()==""||$("#ridno").val()==""||$("#rtel").val()==""||
 					$("#rsta").val()==""){
-				alert("请补全所有信息");
+				
 				return;
 			}
 		})
-		//
+		
 		function register(){
 			if($("#rname").val()==""||$("#rpwd").val()==""||$("#qrpwd").val()==""||
 					$("#rage").val()==""||$("#ridno").val()==""||$("#rtel").val()==""||
 					$("#rsta").val()==""){
+				alert("请补全所有信息");
 				return false;
 			}else{
 				return true;
@@ -109,14 +115,13 @@
 <title>用户注册</title>
 </head>
 <body>
-	<form action="${proPath}/register/checktel.do" id="register" method="post" onsubmit="return register();">
+	<form action="${proPath}/register/regmethod.do" id="register" method="post" onsubmit="return register();">
 		<samp>账户名称:</samp><input type="text" id="rname" name="rname"><samp id="sp"></samp><br>
 		<samp>密&nbsp;&nbsp;码:</samp><input type="text" id="rpwd" name="rpwd"><br>
 		<samp>确认密码:</samp><input type="text" id="qrpwd" name="qrpwd"><samp id="sp1"></samp><br>
 		<samp>年&nbsp;&nbsp;龄:</samp><input type="text" id="rage" name="rage"><samp id="sp2"></samp><br>
 		<samp>身份证号码:</samp><input type="text" id="ridno" name="ridno"><samp id="sp3"></samp><br>
 		<samp>电&nbsp;&nbsp;话:</samp><input type="text" id="rtel" name="rtel"><samp id="sp4"></samp><br>
-		<samp>审核状态:</samp><input type="text" id="rsta"><br>
 		<input type="submit" value="注册" id="register">
 		<input type="button" value="取消">
 	</form>

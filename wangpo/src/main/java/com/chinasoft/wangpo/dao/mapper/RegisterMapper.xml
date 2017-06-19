@@ -8,4 +8,7 @@
 	<select id="checkPhone" resultType="int" parameterType="com.chinasoft.wangpo.entity.Register">
 		select count(*) from account where acc_tel=#{rtel}
 	</select>
+	<insert id="insert" parameterType="com.chinasoft.wangpo.entity.Register">
+		insert into register values(#{rid},#{rname},#{rpwd},#{rage},#{ridno},#{rtel},#{rsta})
+	</insert>
 </mapper>
