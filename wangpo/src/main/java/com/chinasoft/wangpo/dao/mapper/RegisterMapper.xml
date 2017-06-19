@@ -45,4 +45,9 @@
 			</if>
 		</where>
 	</select>
+  
+	<insert id="insert" parameterType="com.chinasoft.wangpo.entity.Register">
+		insert into register values(#{rid},#{rname},#{rpwd},#{rage},#{ridno},#{rtel},#{rsta})
+	</insert>
+
 </mapper>
