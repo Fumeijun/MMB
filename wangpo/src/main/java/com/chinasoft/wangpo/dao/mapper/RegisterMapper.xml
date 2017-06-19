@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chinasoft.wangpo.dao.RegisterDao">
+	<resultMap id="registerResults" type="com.chinasoft.wangpo.entity.Register">
+		<id column="rid" property="rid" jdbcType="INTEGER"/>
+		<result column="rname" property="rname" jdbcType="VARCHAR"/>
+		<result column="rpwd" property="rpwd" jdbcType="VARCHAR"/>
+		<result column="rage" property="rage" jdbcType="INTEGER"/>
+		<result column="ridno" property="ridno" jdbcType="VARCHAR"/>
+		<result column="rtel" property="rtel" jdbcType="VARCHAR"/>
+		<result column="rsta" property="rsta" jdbcType="INTEGER"/>
+	</resultMap>
 
 	<select id="checkName" resultType="int" parameterType="com.chinasoft.wangpo.entity.Register">
 		select count(*) from account where acc_lname=#{rname}
 	</select>
 	<select id="checkPhone" resultType="int" parameterType="com.chinasoft.wangpo.entity.Register">
 		select count(*) from account where acc_tel=#{rtel}
+	</select>
+
+	<!-- 通过多条件分页查询，返回列表数据 -->
+	<select id="selectPageListUseDyc" parameterType="page"
+			resultMap="registerResults">
+		select * from register
+		<where>
+
+			<if test="not(paramEntity.rname==null or  paramEntity.rname=='')">
+				and rname like #{paramEntity.rname}
+			</if>
+			<if test="not(paramEntity.rsta==null or  paramEntity.rsta=='')">
+				and rsta = #{paramEntity.rsta}
+			</if>
+		</where>
+		limit #{start},#{rows}
+	</select>
+	<!-- 通过多条件分页查询，返回总记录数 -->
+	<select id="selectPageCountUseDyc" parameterType="page" resultType="integer">
+		select count(0) from register
+		<where>
+			<if test="not(paramEntity.rname==null or  paramEntity.rname=='')">
+				and rname like #{paramEntity.rname}
+			</if>
+			<if test="not(paramEntity.rsta==null or  paramEntity.rsta=='')">
+				and rsta = #{paramEntity.rsta}
+			</if>
+		</where>
 	</select>
 </mapper>

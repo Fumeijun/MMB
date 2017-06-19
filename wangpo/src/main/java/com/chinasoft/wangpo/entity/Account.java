@@ -1,7 +1,6 @@
 package com.chinasoft.wangpo.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author Makise
@@ -28,7 +27,7 @@ public class Account implements Serializable{
     private String acc_page; //用户主页
     private Integer acc_chi; //有几个小孩
     private Integer acc_sta; //用户状态
-    private Integer acc_type; //用户类型（黄钻、蓝钻...）
+    private Type type; //用户类型（黄钻、蓝钻...）
     //private List<Account> flist; //好友列表
 
     public Integer getAcc_id() {
@@ -191,14 +190,13 @@ public class Account implements Serializable{
         this.acc_sta = acc_sta;
     }
 
-    public Integer getAcc_type() {
-        return acc_type;
+    public Type getType() {
+        return type;
     }
 
-    public void setAcc_type(Integer acc_type) {
-        this.acc_type = acc_type;
+    public void setType(Type type) {
+        this.type = type;
     }
-
 
     @Override
     public String toString() {
@@ -223,7 +221,7 @@ public class Account implements Serializable{
                 ", acc_page='" + acc_page + '\'' +
                 ", acc_chi=" + acc_chi +
                 ", acc_sta=" + acc_sta +
-                ", acc_type=" + acc_type +
+                ", type=" + type +
                 '}';
     }
 }
