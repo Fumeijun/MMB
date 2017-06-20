@@ -5,10 +5,54 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+	$(function(){
+		 var win = parent.$("iframe[title='管理注册用户']").get(0).contentWindow;
+	     var row = win.$('#dg').datagrid("getSelected");
+	     //把父页面(节点)所选中的数据，加载到当前页面的form表单中
+	     $('#ff').form('load',{
+	            acc_id : row.acc_id,
+	            acc_lname : row.acc_lname,
+	            acc_rname : row.acc_rname,
+	            acc_tel : row.acc_tel,
+	            acc_age:row.acc_age,
+	            acc_gender :row.acc_gender,
+	            acc_addr :row.acc_addr,
+	            acc_sta :row.acc_sta,
+	            'type.t_id':row.type.t_id
+	        });
+	     
+	     $("#btn").click(function() {
+	            //$("#ff").form("enableValidation");
+	            if ($("#ff").form("validate")) {
+	                $('#ff').form('submit', {
+	                    url : '${proPath}/account/insertL.do',
+	                    onSubmit : function() {
+	                        return true;
+	                    },
+	                    success : function(count) {
+	                        //可以定义为对应消息框
+	                        if(count>0){
+	                            alert("成功");
+	                        }else{
+	                            alert("失败");
+	                        }
+
+	                        parent.$("#win").window("close");
+	                        win.$("#dg").datagrid("reload");
+	                    }
+	                });
+
+	            }
+
+	        });
+
+	})
+</script>
 <title>用户审核</title>
 </head>
 <body>
-	<form action="">
+	<form action="" id="regform" method="post">
 		<div style="margin-bottom:20px">
 		<samp>用户ID:</samp><input type="text" id="rid" name="rid"><br>
 		</div>

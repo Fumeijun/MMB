@@ -45,7 +45,7 @@ public class AccountAction{
     public String PerInfgg(HttpServletRequest req,HttpServletResponse resp,Account account){
     	System.out.println("调用perinfgg方法");
     	System.err.println(account);
-    	int a=accountService.insert(account);//修改个人信息
+    	int a=accountService.updateByPK(account);//修改个人信息
     	if(a>=1){
     		req.setAttribute("perinfgg", "修改成功");
     		PerInf(req, resp, account);
@@ -76,5 +76,11 @@ public class AccountAction{
     public Integer update(Account account){
         return accountService.updateByPK(account);
     }
+    @RequestMapping("/insertL")
+    public Integer insert(Account account){
+    	
+    	return accountService.insert(account);
+    }
+    
 
 }

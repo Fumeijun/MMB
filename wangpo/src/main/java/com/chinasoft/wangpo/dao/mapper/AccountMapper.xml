@@ -80,8 +80,7 @@
 <select id="select" parameterType="account" resultMap="accountResults">
 		SELECT * FROM account where acc_lname=#{acc_lname}
 	</select>
-
-	<insert id="insert" parameterType="account">
+	<update id="updateByPK" parameterType="account">
 		update account set acc_lname=#{acc_lname},
 				acc_rname=#{acc_rname},acc_gender=#{acc_gender}, 
 				acc_age=#{acc_age},acc_pro=#{acc_pro},
@@ -91,6 +90,11 @@
 				acc_hob=#{acc_hob},acc_addr=#{acc_addr},
 				acc_marr=#{acc_marr},acc_chi=#{acc_chi}
 				 where acc_id=#{acc_id}
+	</update>
+	<!-- 审核后插入用户表 -->
+	<insert id="insert" parameterType="account">
+		insert into account(acc_lname,acc_pwd,acc_age,acc_idno,acc_tel) 
+		values(#{acc_lname},#{acc_pwd},#{acc_age},#{acc_idno},#{acc_tel})
 	</insert>
 
 </mapper>
