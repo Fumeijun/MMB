@@ -28,8 +28,10 @@ public class AccountAction{
     @ResponseBody
     public Object selectPageUseDyc(Page<Account> page,Account account){
         page.setParamEntity(account);
+        System.out.println(accountService.selectPageUseDyc(page).getPageMap().get("rows").toString());
         return accountService.selectPageUseDyc(page).getPageMap();
     }
+
     
     //查看个人基本信息
     @RequestMapping("/perInf")
@@ -56,4 +58,24 @@ public class AccountAction{
     
     }
     
+
+
+    @RequestMapping("/deleteList")
+    @ResponseBody
+    public Integer deleteList(String pks[]){
+        Integer ret=0;
+        try {
+            ret = accountService.deleteList(pks);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public Integer update(Account account){
+        return accountService.updateByPK(account);
+    }
+
 }

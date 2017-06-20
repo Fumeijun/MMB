@@ -23,7 +23,7 @@
 		<result column="acc_page" property="acc_page"/>
 		<result column="acc_chi" property="acc_chi"/>
 		<result column="acc_sta" property="acc_sta"/>
-		<result column="acc_type" property="acc_type"/>
+		<!--<result column="acc_type" property="acc_type"/>-->
 	</resultMap>
 	
 	<select id="userLogin" parameterType="com.chinasoft.wangpo.entity.Account" resultMap="userlogin">

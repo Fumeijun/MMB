@@ -48,7 +48,7 @@
                 <li style="padding: 6px; width: auto;height: auto"><a href="${proPath}/jsp/admin/account/accList.jsp"  title="查看用户"
                                              style="text-decoration: none;display: block;font-weight:bold;">查看用户</a>
                 </li>
-                <li style="padding: 6px;width: auto;height: auto"><a href="#" title="管理注册用户"
+                <li style="padding: 6px;width: auto;height: auto"><a href="${proPath}/jsp/admin/account/registerList.jsp" title="管理注册用户"
                                              style="text-decoration: none;display: block;font-weight:bold;" >管理注册用户</a>
                 </li>
             </ul>

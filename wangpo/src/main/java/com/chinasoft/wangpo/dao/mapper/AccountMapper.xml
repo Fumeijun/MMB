@@ -22,13 +22,62 @@
 	<result column="acc_page" property="acc_page" jdbcType="VARCHAR"/>
 	<result column="acc_chi" property="acc_chi" jdbcType="INTEGER"/>
 	<result column="acc_sta" property="acc_sta" jdbcType="INTEGER"/>
-	<result column="acc_type" property="acc_type" jdbcType="INTEGER"/>
+	<association property="type" javaType="com.chinasoft.wangpo.entity.Type">
+		<id property="t_id" column="t_id"/>
+		<result property="t_type" column="t_type"/>
+		<result property="t_money" column="t_money"/>
+	</association>
 	</resultMap>
-	<select id="addFriends" parameterType="account" resultMap="accountResults">
+	<select id="addFriends" parameterType="Account" resultMap="accountResults">
 		SELECT * FROM account where acc_lname like '%${acc_lname}%'
 	</select>
 
-	<select id="select" parameterType="account" resultMap="accountResults">
+	<!-- 通过多条件分页查询，返回列表数据 -->
+	<select id="selectPageListUseDyc" parameterType="page"
+			resultMap="accountResults">
+		select * from account a ,types t
+		<where>
+			a.acc_type = t.t_id
+			<if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
+				and acc_rname like #{paramEntity.acc_rname}
+			</if>
+			<if test="not(paramEntity.acc_tel==null or  paramEntity.acc_tel=='')">
+				and acc_tel like #{paramEntity.acc_tel}
+			</if>
+		</where>
+		limit #{start},#{rows}
+	</select>
+	<!-- 通过多条件分页查询，返回总记录数 -->
+	<select id="selectPageCountUseDyc" parameterType="page" resultType="integer">
+		select count(0) from account a ,types t
+		<where>
+			a.acc_type = t.t_id
+			<if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
+				and acc_rname like #{paramEntity.acc_rname}
+			</if>
+			<if test="not(paramEntity.acc_tel==null or  paramEntity.acc_tel=='')">
+				and acc_tel like #{paramEntity.acc_tel}
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据主键（数组）批量删除记录 -->
+	<delete id="deleteList" >
+		delete from account where acc_id in
+		<foreach collection="array" item="deptId" open="(" close=")" separator=",">
+			#{deptId}
+		</foreach>
+	</delete>
+
+	<!-- 修改用户信息 -->
+	<update id="updateByPK" parameterType="account">
+		update account	set
+		acc_sta=#{acc_sta},acc_type=#{type.t_id}
+		where
+		acc_id=#{acc_id}
+	</update>
+
+<select id="select" parameterType="account" resultMap="accountResults">
 		SELECT * FROM account where acc_lname=#{acc_lname}
 	</select>
 
@@ -43,34 +92,4 @@
 				acc_marr=#{acc_marr},acc_chi=#{acc_chi}
 				 where acc_id=#{acc_id}
 	</insert>
-
-	<!-- 通过多条件分页查询，返回列表数据 -->
-	<select id="selectPageListUseDyc" parameterType="page"
-			resultMap="accountResults">
-		select * from account
-		<where>
-			<if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
-				and acc_rname like #{paramEntity.acc_rname}
-			</if>
-			<if test="not(paramEntity.acc_tel==null or  paramEntity.acc_tel=='')">
-				and acc_tel like #{paramEntity.acc_tel}
-			</if>
-		</where>
-		limit #{start},#{rows}
-	</select>
-	
-	<!-- 通过多条件分页查询，返回总记录数 -->
-	<select id="selectPageCountUseDyc" parameterType="page" resultType="integer">
-		select count(0) from account
-		<where>
-			<if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
-				and acc_rname like #{paramEntity.acc_rname}
-			</if>
-			<if test="not(paramEntity.acc_tel==null or  paramEntity.acc_tel=='')">
-				and acc_tel like #{paramEntity.acc_tel}
-			</if>
-		</where>
-	</select>
-	
-		
 </mapper>
