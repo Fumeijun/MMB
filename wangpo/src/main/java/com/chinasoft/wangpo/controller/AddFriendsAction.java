@@ -3,6 +3,7 @@ package com.chinasoft.wangpo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.json.JsonObject;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -11,14 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chinasoft.wangpo.entity.Account;
+import com.chinasoft.wangpo.entity.Page;
+import com.chinasoft.wangpo.entity.page2;
 import com.chinasoft.wangpo.service.AccountService;
 
 
@@ -33,26 +35,20 @@ public class AddFriendsAction {
 	
 	
 	@RequestMapping(value="/addFriends")
-	public String  AddFriends(HttpServletRequest req, HttpServletResponse resp,Account account) {
-		Account ac=accountService.addFriends(account);
-	
-/*		String name=req.getParameter("acc_lname");
-		String gender=req.getParameter("acc_gender");
-		String addr=req.getParameter("Acc_addr");*/
+	@ResponseBody
+	public Object  AddFriends(Page<Account> page,Account account) {
+		page.setParamEntity(account);
 		
-	List<Account> list=new ArrayList<Account>();
-//		ac.setAcc_lname(name);
-//		ac.setAcc_gender(gender);
-//		ac.setAcc_addr(addr);
-		list.add(ac);
-		System.out.println("sssw"+list);
-/*		JsonObject object=(JsonObject) new AddFriendsAction();
 		
-			object.put("list", list);*/
+		return accountService.selectPageUseDyc(page).getPageMap();
 
-	
-		
-		return "../jsp/fumeijun/addFriends.jsp";
+	}
+	@RequestMapping("/queryUsers")
+	@ResponseBody
+	public page2<Account> queryUsers(page2<Account> page){
+		accountService.queryUsers(page);
+		System.out.println("page="+page);
+		return page;
 	}
 
 }

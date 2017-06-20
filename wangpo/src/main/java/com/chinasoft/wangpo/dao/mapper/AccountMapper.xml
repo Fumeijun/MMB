@@ -24,8 +24,22 @@
 	<result column="acc_sta" property="acc_sta" jdbcType="INTEGER"/>
 	<result column="acc_type" property="acc_type" jdbcType="INTEGER"/>
 	</resultMap>
-	<select id="addFriends" parameterType="Account" resultMap="accountResults">
-		SELECT * FROM account where acc_lname like '%${acc_lname}%'
+	<select id="queryUsers" parameterType="Account" resultMap="accountResults">
+		SELECT * FROM account 
+		<where>
+				<if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
+				and acc_rname like #{paramEntity.acc_rname}
+				</if>
+				<if test="not(paramEntity.acc_gender==null or  paramEntity.acc_gender=='')">
+				an acc_gender like #{paramEntity.acc_gender}
+				</if>
+				<if test="not(paramEntity.acc_age==null or  paramEntity.acc_age=='')">
+				an acc_age like #{paramEntity.acc_age}
+				</if>
+				<if test="not(paramEntity.acc_edu==null or  paramEntity.acc_edu=='')">
+				an acc_edu like #{paramEntity.acc_edu}
+				</if>
+		</where>
 	</select>
 
 	<!-- 通过多条件分页查询，返回列表数据 -->
