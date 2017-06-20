@@ -3,15 +3,13 @@ package com.chinasoft.wangpo.controller;
 import com.chinasoft.wangpo.entity.Account;
 import com.chinasoft.wangpo.entity.Page;
 import com.chinasoft.wangpo.service.AccountService;
-import com.chinasoft.wangpo.util.Md5Util;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Makise
@@ -71,10 +69,10 @@ public class AccountAction{
         return ret;
     }
 
-    @RequestMapping("/update")
+    @RequestMapping("/check")
     @ResponseBody
-    public Integer update(Account account){
-        return accountService.updateByPK(account);
+    public Integer checkByPK(Account account){
+        return accountService.checkByPK(account);
     }
     @RequestMapping("/insertL")
     public Integer insert(Account account){

@@ -14,6 +14,8 @@ public interface BaseService <T>{
     public int insert(T entity);
     //根据主键修改记录
     public int updateByPK(T entity);
+    //根据主键修改记录
+    public int checkByPK(T entity);
     //删除一条记录
     public int deleteByPk(T entity);
 

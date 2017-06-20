@@ -5,19 +5,16 @@ import com.chinasoft.wangpo.entity.Admin;
 import com.chinasoft.wangpo.service.AdminLoginService;
 import com.chinasoft.wangpo.service.UserLoginService;
 import com.chinasoft.wangpo.util.Md5Util;
-import com.mysql.fabric.xmlrpc.base.Data;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -96,10 +93,13 @@ public class LoginAction {
 	    }
 
 	    @RequestMapping("/loginOut")
-	    public String loginOut(HttpServletRequest req, HttpServletResponse resp){
+		@ResponseBody
+	    public Object loginOut(HttpServletRequest req, HttpServletResponse resp){
 			HttpSession hs=req.getSession();
 			hs.invalidate();
-	        return "../login.jsp";
+			List<String> page =new ArrayList<String>();
+			page.add("/login.jsp");
+	        return page;
 	    }
 
 	    @RequestMapping("/administrator")

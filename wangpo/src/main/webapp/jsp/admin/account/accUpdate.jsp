@@ -83,7 +83,7 @@
             $("#ff").form("enableValidation");
             if ($("#ff").form("validate")) {
                 $('#ff').form('submit', {
-                    url : '${proPath}/account/update.do',
+                    url : '${proPath}/account/check.do',
                     onSubmit : function() {
                         return true;
                     },
