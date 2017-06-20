@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Event {
     private Integer e_id; //活动ID
-    private Integer e_acc; //发起账号id
+    private Account e_acc; //发起账号id
     private String e_atime; //申请时间
     private String e_sta; //活动状态
     private String e_stime; //活动开始时间
@@ -25,11 +25,11 @@ public class Event {
         this.e_id = e_id;
     }
 
-    public Integer getE_acc() {
+    public Account getE_acc() {
         return e_acc;
     }
 
-    public void setE_acc(Integer e_acc) {
+    public void setE_acc(Account e_acc) {
         this.e_acc = e_acc;
     }
 

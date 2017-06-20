@@ -115,6 +115,7 @@
                         text:"<input type='text' id='acc_sta' name='acc_sta'/>"
                     }],
 
+
                 columns:[[
                     {checkbox:true},
                     {field:'acc_id',title:'用户ID',width:100},

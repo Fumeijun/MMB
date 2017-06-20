@@ -20,7 +20,7 @@
         $(function(){
             $('#dg').datagrid({
                 url:'${proPath}/event/eventSelect.do', //支持多个条件的分页查询
-                striped:true,
+            striped:true,
                 fitColumns:true,
                 idField:'acc_id',
                 rownumbers:true,
