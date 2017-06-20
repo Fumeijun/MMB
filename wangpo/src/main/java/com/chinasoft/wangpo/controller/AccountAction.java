@@ -2,6 +2,7 @@ package com.chinasoft.wangpo.controller;
 
 import com.chinasoft.wangpo.entity.Account;
 import com.chinasoft.wangpo.entity.Page;
+import com.chinasoft.wangpo.entity.Register;
 import com.chinasoft.wangpo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,11 +75,7 @@ public class AccountAction{
     public Integer checkByPK(Account account){
         return accountService.checkByPK(account);
     }
-    @RequestMapping("/insertL")
-    public Integer insert(Account account){
-    	
-    	return accountService.insert(account);
-    }
+   
     
 
 }

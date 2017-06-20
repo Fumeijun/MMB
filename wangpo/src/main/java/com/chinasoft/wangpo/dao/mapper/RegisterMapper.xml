@@ -47,7 +47,15 @@
 	</select>
   
 	<insert id="insert" parameterType="com.chinasoft.wangpo.entity.Register">
-		insert into register values(#{rid},#{rname},#{rpwd},#{rage},#{ridno},#{rtel},#{rsta})
+		insert into register(rname,rpwd,rage,ridno,rtel) values(#{rname},#{rpwd},#{rage},#{ridno},#{rtel})
 	</insert>
-
+	
+	<!-- 审核后插入用户表 -->
+	<insert id="checkByPK" parameterType="com.chinasoft.wangpo.entity.Register">
+		insert into account(acc_lname,acc_pwd,acc_age,acc_idno,acc_tel) 
+		values(#{rname},#{rpwd},#{rage},#{ridno},#{rtel})
+	</insert>
+	<update id="updateByPK" parameterType="com.chinasoft.wangpo.entity.Register">
+		update register set rsta=#{rsta} where rid=#{rid}
+	</update>
 </mapper>

@@ -3,6 +3,8 @@ package com.chinasoft.wangpo.controller;
 import com.chinasoft.wangpo.entity.Page;
 import com.chinasoft.wangpo.entity.Register;
 import com.chinasoft.wangpo.service.RegisterService;
+import com.chinasoft.wangpo.util.Md5Util;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,15 +52,33 @@ public class RegisterAction {
   }
 	//注册
 	@RequestMapping(value="/regmethod",produces="application/json;charset=utf-8")
+	@ResponseBody
 	public String reg(HttpServletRequest req,HttpServletResponse resp,Register register){
 		System.out.println(register.getRname()+","+register.getRpwd()+","+register.getRtel());
 		String addr="";
+		//密码加密
+		String MDpwd=Md5Util.md5(register.getRpwd());
+		register.setRpwd(MDpwd);
 		int count=registerService.insert(register);
 		if(count>0){
-			addr="jsp/lye/register.jsp";
+			//addr="jsp/lye/register.jsp";
+			addr="{\"mess\":\"注册成功\"}";
 		}else{
-			addr="jsp/user/userMian.jsp";
+			//addr="jsp/user/userMian.jsp";
+			addr="{\"mess\":\"注册失败\"}";
 		}
 		return addr;
 	}
+	 //审核插入用户表
+    @RequestMapping("/insertL")
+    @ResponseBody
+    public Integer insert(Register register){
+    	int count=registerService.updateByPK(register);
+    	if(count>0){
+    		return registerService.checkByPK(register);
+    	}else {
+			return null;
+		}
+    	
+    }
 }
