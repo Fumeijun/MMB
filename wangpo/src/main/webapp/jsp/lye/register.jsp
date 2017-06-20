@@ -8,7 +8,7 @@
 <script type="text/javascript"> 
 	$(function() {
 		//判断账户是否存在
-		$("#rname").mouseleave(function(){	
+		$("#rname").blur(function(){	
 			var namenull=$("#rname").val()
 			if(namenull==""||namenull==null){
 				$("#sp").html("请输入账户名")
@@ -34,7 +34,7 @@
 			}
 		})
 		//判断两次密码是否一致
-		$("#qrpwd").mouseleave(function(){
+		$("#qrpwd").blur(function(){
 			var pwdnull=$("#rpwd").val()
 			if($("#rpwd").val()!=$("#qrpwd").val()){
 				$("#sp1").html("两次输入密码不一致");
@@ -44,9 +44,13 @@
 			}
 		})
 		//判断年龄
-		$("#rage").mouseleave(function(){
+		$("#rage").blur(function(){
 			var agenull=$("#rage").val()
 			var NL=/^(1[89]|[2-8][0-9]|90)$/;
+			if(NL===""){
+				$("#sp2").html("请输入年龄");
+				return;
+			}
 			if(NL.test($("#rage").val())!=true){
 				$("#sp2").html("请输入正确的年龄");
 			}else{
@@ -55,7 +59,7 @@
 			}
 		})
 		//判断身份证是否合格
-		$("#ridno").mouseleave(function(){
+		$("#ridno").blur(function(){
 			var isIDCard=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
 			if(isIDCard.test($("#ridno").val())!=true){
 				$("#sp3").html("请输入正确的身份证号");
@@ -65,7 +69,7 @@
 			}
 		})
 		//判断电话号码是否合格
-		$("#rtel").mouseleave(function(){
+		$("#rtel").blur(function(){
 			var isphone=/^1\d{10}$/;
 			if(isphone.test($("#rtel").val())!=true){
 				$("#sp4").html("请输入正确的手机号");

@@ -50,12 +50,15 @@ public class RegisterAction {
   }
 	//注册
 	@RequestMapping(value="/regmethod",produces="application/json;charset=utf-8")
-	@ResponseBody
-	public void reg(HttpServletRequest req,HttpServletResponse resp,Register register){
+	public String reg(HttpServletRequest req,HttpServletResponse resp,Register register){
 		System.out.println(register.getRname()+","+register.getRpwd()+","+register.getRtel());
+		String addr="";
 		int count=registerService.insert(register);
 		if(count>0){
-			
+			addr="jsp/lye/register.jsp";
+		}else{
+			addr="jsp/user/userMian.jsp";
 		}
+		return addr;
 	}
 }
