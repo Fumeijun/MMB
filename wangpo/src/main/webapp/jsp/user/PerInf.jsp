@@ -96,14 +96,14 @@
 </head>
 <body>
 	<div id="ee">
-		<form id="ff" action="${proPath}/account/perinfgg.do" method="post" >
+		<form id="ff"  action="${proPath}/account/perinfgg.do" method="post" >
 		<input type="hidden"  name="acc_id" value="${sessionScope.user.acc_id}"><br>
 		<label>真实姓名：</label><input class="easyui-validatebox" type="text" name="acc_rname" data-options="required:true" value="${sessionScope.user.acc_rname}"/ ><br>
 		<%-- <label>修改密码：</label><input value="${sessionScope.user.acc_pwd}" id="password" name="password" validType="length[6,16]" 
 					class="easyui-validatebox"  type="password"  /> <br> 
 		<label>确认密码：</label><input type="password" name="acc_pwd" id="acc_pwd" 
 					class="easyui-validatebox"  validType="equalTo['#password']" invalidMessage="两次输入密码不匹配"/><br>--%>
-		<label>用&nbsp&nbsp户&nbsp 名：</label><input value="${sessionScope.user.acc_lname}" class="easyui-validatebox" type="text" name="acc_lname" data-options="required:false" / ><br> 
+		<label>用&nbsp&nbsp户&nbsp 名：</label><input value="${sessionScope.user.acc_lname}" class="easyui-validatebox" type="text" name="acc_lname" readonly="ture" / ><br> 
 		<label>性&nbsp&nbsp&nbsp&nbsp&nbsp别：</label>
 		<select value="${sessionScope.user.acc_gender}" id="acc_gender" class="easyui_combobx" style="width:70px" name="acc_gender">
 			<option value="男">男</option>   
@@ -160,7 +160,7 @@
 			<option value="2">两个</option>
 			<option value="3">一窝</option>
 			</select><br>
-		<label>用户类型：</label><input  value="${sessionScope.user.acc_type}" class="easyui-validatebox" type="text" name="acc_type" readonly="ture" / ><br>
+		<label>用户类型：</label><input  value="${sessionScope.user.type.t_type}" class="easyui-validatebox" type="text"  readonly="ture" / ><br>
 			<input type="submit" value="修改">
 		</form>
 	</div>

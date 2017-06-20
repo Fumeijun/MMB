@@ -23,11 +23,16 @@
 		<result column="acc_page" property="acc_page"/>
 		<result column="acc_chi" property="acc_chi"/>
 		<result column="acc_sta" property="acc_sta"/>
-		<!--<result column="acc_type" property="acc_type"/>-->
+		<association property="type" javaType="com.chinasoft.wangpo.entity.Type">
+		<id property="t_id" column="t_id"/>
+		<result property="t_type" column="t_type"/>
+		<result property="t_money" column="t_money"/>
+	</association>
 	</resultMap>
 	
 	<select id="userLogin" parameterType="com.chinasoft.wangpo.entity.Account" resultMap="userlogin">
-		select * from account where acc_lname=#{acc_lname} or acc_tel=#{acc_lname}
+		select * from account a,types t where (a.acc_lname=#{acc_lname} or a.acc_tel=#{acc_lname}) 
+						and a.acc_type=t.t_id
 	</select>
 	
 	<update id="userAddCiSu" parameterType="com.chinasoft.wangpo.entity.Account">

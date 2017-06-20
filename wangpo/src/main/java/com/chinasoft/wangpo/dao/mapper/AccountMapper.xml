@@ -77,8 +77,8 @@
 		acc_id=#{acc_id}
 	</update>
 
-<select id="select" parameterType="account" resultMap="accountResults">
-		SELECT * FROM account where acc_lname=#{acc_lname}
+	<select id="select" parameterType="account" resultMap="accountResults">
+		SELECT * FROM account,types where types.t_id=account.acc_type and account.acc_lname=#{acc_lname}
 	</select>
 
 	<insert id="insert" parameterType="account">
@@ -90,6 +90,6 @@
 				acc_qq=#{acc_qq},acc_mail=#{acc_mail},
 				acc_hob=#{acc_hob},acc_addr=#{acc_addr},
 				acc_marr=#{acc_marr},acc_chi=#{acc_chi}
-				 where acc_id=#{acc_id}
+				where acc_id=#{acc_id}
 	</insert>
 </mapper>
