@@ -92,4 +92,5 @@
 				acc_marr=#{acc_marr},acc_chi=#{acc_chi}
 				 where acc_id=#{acc_id}
 	</insert>
+
 </mapper>
