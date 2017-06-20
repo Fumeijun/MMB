@@ -53,7 +53,7 @@
                             width:600,
                             height:400,
                             modal:true,
-                            content:"<iframe src='${proPath}/' title='修改用户信息' height='100%' width='100%' frameborder='0px' ></iframe>"
+                            content:"<iframe src='${proPath}/jsp/admin/account/regUpdate.jsp' title='修改用户信息' height='100%' width='100%' frameborder='0px' ></iframe>"
                         });
 
                     }
