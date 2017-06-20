@@ -18,7 +18,7 @@
         <h1>王婆牵线婚恋交友</h1>
     </div>
     <div class="wu-header-right">
-        <p><strong class="easyui-tooltip" >${sessionScope.account.acc_lname}</strong>，欢迎您！</p>
+        <p><strong class="easyui-tooltip" >${sessionScope.user.acc_rname}</strong>，欢迎您！</p>
         <p><a href="#">网站首页</a>|<a href="#">帮助中心</a>|<a href="#">安全退出</a></p>
     </div>
 </div>

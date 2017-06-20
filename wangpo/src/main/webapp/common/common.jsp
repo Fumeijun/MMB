@@ -11,3 +11,5 @@
 <script type="text/javascript" src="${proPath}/js/common.js"></script>
 <link rel="stylesheet" href="${proPath}/css/mycss.css" type="text/css">
 <script type="text/javascript" src="${proPath}/js/jscharts.js"></script>
+<link rel="stylesheet" type="text/css" href="${proPath}/css/wu.css" />
+<link rel="stylesheet" type="text/css" href="${proPath}/css/icon.css" />
