@@ -38,4 +38,10 @@ public class AccountAction{
         }
         return ret;
     }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public Integer update(Account account){
+        return accountService.updateByPK(account);
+    }
 }

@@ -44,9 +44,9 @@
     </div>
     <div>
         <%--@declare id="acc_type"--%><label for="acc_type">用户类型：</label>
-        <select id="cc" class="easyui-combobox" name="acc_type" style=" width:200px;">
-            <option value="1">普通用户</option>
-            <option value="2">一般会员</option>
+        <select id="cc" class="easyui-combobox" name="type.t_id" style=" width:200px;">
+            <option value="1">一般用户</option>
+            <option value="2">普通会员</option>
             <option value="3">黄金会员</option>
             <option value="4">铂金会员</option>
         </select>
@@ -60,8 +60,8 @@
     $(function() {
         var win = parent.$("iframe[title='查看用户']").get(0).contentWindow;
         var row = win.$('#dg').datagrid("getSelected");
-        var type=null;
-        alert(row.acc_id+"|"+row.type.t_id);
+        //var type=null;
+       // alert(row.acc_id+"|"+row.type.t_id);
 
 
         $('#ff').form('load',{
@@ -73,23 +73,15 @@
             acc_gender :row.acc_gender,
             acc_addr :row.acc_addr,
             acc_sta :row.acc_sta,
-            acc_type:row.type.t_id
-        });
-
-
-        $("[name='acc_rname']").validatebox({
-            required : true,
-            missingMessage : '请填写名字！'
+            'type.t_id':row.type.t_id
         });
 
         //禁用验证
         $("#ff").form("disableValidation");
 
         $("#btn").click(function() {
-            //alert("ddddddddddd");
             $("#ff").form("enableValidation");
             if ($("#ff").form("validate")) {
-                //alert("------------");
                 $('#ff').form('submit', {
                     url : '${proPath}/account/update.do',
                     onSubmit : function() {
