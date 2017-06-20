@@ -28,7 +28,6 @@ public class AccountAction{
     @ResponseBody
     public Object selectPageUseDyc(Page<Account> page,Account account){
         page.setParamEntity(account);
-        System.out.println(accountService.selectPageUseDyc(page).getPageMap().get("rows").toString());
         return accountService.selectPageUseDyc(page).getPageMap();
     }
 
