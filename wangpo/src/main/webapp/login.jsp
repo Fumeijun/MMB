@@ -7,6 +7,11 @@
 <title>Login page</title>
 <script type="text/javascript">
     $(function(){
+    	var ss=$("#code").val();
+    	if(ss==null){
+    		arlt("书屋的");
+    	}
+    	
         $('#dd').dialog({
             title: '登陆窗口',
             width: 350,
@@ -35,12 +40,21 @@
         });
         //禁用表单验证
         $('#ff').form("disableValidation");
-
+        
+		$("#code").blur(function(){
+			$.ajax({
+				url:"${proPath}/vaCode/val",
+				type:"post",
+				data:{
+					vercode:$("#code").val()
+				}
+			});
+		})
     });
     
     function refresh(){
     	$("#authImg").attr("src","${proPath}/vacode/getVacode.do?ro="+Math.random())
-  	
+  		
     }
     
 </script>
@@ -60,7 +74,7 @@
         </div>
         <div style="color:red" >${requestScope.errMsg}</div>
         
-     	<td>验证码：</td><td valign="bottom"><input type="text" name="vercode" size="10"/> 
+     	<td>验证码：</td><td valign="bottom"><input type="text" name="vercode" size="10" id="code"/> 
      	<img alt="" src="${proPath}/vacode/getVacode.do" mce_src="authImg" id="authImg" align="absmiddle">
      	<a href="javascript:void(0)" mce_href="#" onclick="refresh()">
      	<span style="font-size:12px" mce_style="font-size:12px">看不清楚？点我呀</span></a></td>

@@ -77,4 +77,19 @@
 		acc_id=#{acc_id}
 	</update>
 
+<select id="select" parameterType="account" resultMap="accountResults">
+		SELECT * FROM account where acc_lname=#{acc_lname}
+	</select>
+
+	<insert id="insert" parameterType="account">
+		update account set acc_lname=#{acc_lname},
+				acc_rname=#{acc_rname},acc_gender=#{acc_gender}, 
+				acc_age=#{acc_age},acc_pro=#{acc_pro},
+				acc_pay=#{acc_pay},acc_edu=#{acc_edu},
+				acc_idno=#{acc_idno},acc_tel=#{acc_tel},
+				acc_qq=#{acc_qq},acc_mail=#{acc_mail},
+				acc_hob=#{acc_hob},acc_addr=#{acc_addr},
+				acc_marr=#{acc_marr},acc_chi=#{acc_chi}
+				 where acc_id=#{acc_id}
+	</insert>
 </mapper>

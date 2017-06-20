@@ -24,11 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/vacode")
-public class VaCode{
+public class VaCode {
 	// 设置图形验证码中字符串的字体和大小 
 	private Font myFont=new Font("Arial Black", Font.PLAIN, 16);
-
-
 	
 	// 生成随机颜色  
 	Color getRandColor(int fc,int bc){

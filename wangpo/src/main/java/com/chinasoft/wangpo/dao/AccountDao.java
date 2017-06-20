@@ -14,5 +14,6 @@ public interface AccountDao extends BaseDao<Account> {
 
    // 添加好友
     public Account addFriends(Account account);
-
+    
+    
 }

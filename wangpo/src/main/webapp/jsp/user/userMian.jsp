@@ -28,7 +28,7 @@
     <div class="easyui-accordion" data-options="border:false,fit:true">
         <div title="快捷菜单" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">
             <ul class="easyui-tree wu-side-tree">
-                <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">我的信息</a></li>
+                <li iconCls="icon-users"><a href="/wangpo/jsp/user/PerInf.jsp" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">我的信息</a></li>
                 <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">会员重置</a></li>
                 <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">搜索好友</a></li>
                 <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">参加活动</a></li>
