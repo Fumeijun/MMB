@@ -24,16 +24,31 @@
 	<result column="acc_sta" property="acc_sta" jdbcType="INTEGER"/>
 	<result column="acc_type" property="acc_type" jdbcType="INTEGER"/>
 	</resultMap>
-	<select id="addFriends" parameterType="Account" resultMap="accountResults">
+	<select id="addFriends" parameterType="account" resultMap="accountResults">
 		SELECT * FROM account where acc_lname like '%${acc_lname}%'
 	</select>
+
+	<select id="select" parameterType="account" resultMap="accountResults">
+		SELECT * FROM account where acc_lname=#{acc_lname}
+	</select>
+
+	<insert id="insert" parameterType="account">
+		update account set acc_lname=#{acc_lname},
+				acc_rname=#{acc_rname},acc_gender=#{acc_gender}, 
+				acc_age=#{acc_age},acc_pro=#{acc_pro},
+				acc_pay=#{acc_pay},acc_edu=#{acc_edu},
+				acc_idno=#{acc_idno},acc_tel=#{acc_tel},
+				acc_qq=#{acc_qq},acc_mail=#{acc_mail},
+				acc_hob=#{acc_hob},acc_addr=#{acc_addr},
+				acc_marr=#{acc_marr},acc_chi=#{acc_chi}
+				 where acc_id=#{acc_id}
+	</insert>
 
 	<!-- 通过多条件分页查询，返回列表数据 -->
 	<select id="selectPageListUseDyc" parameterType="page"
 			resultMap="accountResults">
 		select * from account
 		<where>
-
 			<if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
 				and acc_rname like #{paramEntity.acc_rname}
 			</if>
@@ -43,6 +58,7 @@
 		</where>
 		limit #{start},#{rows}
 	</select>
+	
 	<!-- 通过多条件分页查询，返回总记录数 -->
 	<select id="selectPageCountUseDyc" parameterType="page" resultType="integer">
 		select count(0) from account
@@ -56,4 +72,5 @@
 		</where>
 	</select>
 	
+		
 </mapper>
