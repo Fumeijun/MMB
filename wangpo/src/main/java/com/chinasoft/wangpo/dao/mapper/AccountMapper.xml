@@ -69,8 +69,8 @@
 		</foreach>
 	</delete>
 
-	<!-- 修改用户信息 -->
-	<update id="updateByPK" parameterType="account">
+	<!--审核 修改用户信息 -->
+	<update id="checkByPK" parameterType="account">
 		update account	set
 		acc_sta=#{acc_sta},acc_type=#{type.t_id}
 		where

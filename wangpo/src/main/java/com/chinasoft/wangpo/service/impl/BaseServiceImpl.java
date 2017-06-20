@@ -68,7 +68,10 @@ public class BaseServiceImpl<T>implements BaseService<T> {
     public int updateByPK(T entity) {
         return baseDao.updateByPK(entity);
     }
-
+    @Override
+    public int checkByPK(T entity){
+        return baseDao.checkByPK(entity);
+    }
     @Override
     public int deleteByPk(T entity) {
         return baseDao.deleteByPk(entity);

@@ -19,7 +19,7 @@
     </div>
     <div class="wu-header-right">
         <p><strong class="easyui-tooltip" >${sessionScope.user.acc_rname}</strong>，欢迎您！</p>
-        <p><a href="#">网站首页</a>|<a href="#">帮助中心</a>|<a href="#">安全退出</a></p>
+        <p><a href="${proPath}/jsp/user/userMian.jsp">网站首页</a>|<a href="javascript:void(0)">帮助中心</a>|<a href="javascript:void(0)" id="logout">安全退出</a></p>
     </div>
 </div>
 <!-- end of header -->
@@ -28,7 +28,7 @@
     <div class="easyui-accordion" data-options="border:false,fit:true">
         <div title="快捷菜单" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">
             <ul class="easyui-tree wu-side-tree">
-                <li iconCls="icon-users"><a href="/wangpo/jsp/user/PerInf.jsp" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">我的信息</a></li>
+                <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="${proPath}/jsp/user/PerInf.jsp" iframe="0">我的信息</a></li>
                 <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">会员重置</a></li>
                 <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">搜索好友</a></li>
                 <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">参加活动</a></li>
@@ -44,7 +44,7 @@
         </div>
         <div title="活动中心" data-options="iconCls:'icon-creditcards'" style="padding:5px;">
             <ul class="easyui-tree wu-side-tree">
-                <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="layout-3.html" iframe="0">导航标题</a></li>
+                <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="${proPath}/jsp/user/event/eventList.jsp" iframe="0">查看现在所有活动</a></li>
                 <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
                 <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
                 <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
@@ -88,16 +88,34 @@
 <!-- begin of main -->
 <div class="wu-main" data-options="region:'center'">
     <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
-        <div title="首页" data-options="href:'wangpo/login.jsp',closable:false,iconCls:'icon-tip',cls:'pd3'"></div>
+        <div title="首页" >这是首页</div>
     </div>
 <!-- end of main -->
 <!-- begin of footer -->
 <div class="wu-footer" data-options="region:'south',border:true,split:true">
-    &copy; 2013 Wu All Rights Reserved
+    &copy; 2017 Wangpo All Rights Reserved
 </div>
 </div>
 <!-- end of footer -->
 <script type="text/javascript">
+    $(function () {
+        $('#logout').click(function () {
+            $.ajax({
+                url: "${proPath}/loginAction/loginOut.do",
+                type:"POST",
+                traditional:true,
+                data:{},
+                success: function(data){
+                    alert('注销成功！');
+                    location.href="${proPath}/"+data;
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.messager.alert('注销失败','请稍后尝试！','error');
+                },
+                dataType:'json'
+            });
+        })
+    });
     $(function(){
         $('.wu-side-tree a').bind("click",function(){
             var title = $(this).text();
@@ -112,7 +130,7 @@
      * Name 载入树形菜单
      */
     $('#wu-side-tree').tree({
-        url:'temp/menu.php',
+        url:'${proPath}css/menu.php',
         cache:false,
         onClick:function(node){
             var url = node.attributes['url'];
