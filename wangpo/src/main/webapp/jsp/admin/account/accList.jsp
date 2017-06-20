@@ -112,7 +112,7 @@
                     },'-',{
                         text:"<input type='text' id='acc_rname' name='acc_rname'/>"
                     },'-',{
-                        text:"<input type='text' id='acc_tel' name='acc_tel'/>"
+                        text:"<input type='text' id='acc_sta' name='acc_sta'/>"
                     }],
 
                 columns:[[
@@ -131,14 +131,14 @@
                 ]]
             });
 
-            $('#acc_tel').searchbox({
+            $('#acc_sta').searchbox({
                 searcher:function(value,name){
                     $('#dg').datagrid('load',{
-                        acc_rname:likeParam($('#acc_rname').val()),
-                        acc_tel:likeParam(value)
+                        rname:likeParam($('#rname').val()),
+                        acc_sta:value
                     });
                 },
-                prompt:'请输入电话号码'
+                prompt:'正常:0,锁定:1,封禁:2'
             });
 
         });

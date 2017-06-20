@@ -41,8 +41,8 @@
 			<if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
 				and acc_rname like #{paramEntity.acc_rname}
 			</if>
-			<if test="not(paramEntity.acc_tel==null or  paramEntity.acc_tel=='')">
-				and acc_tel like #{paramEntity.acc_tel}
+			<if test="not(paramEntity.acc_sta==null or  paramEntity.acc_sta=='')">
+				and acc_sta = #{paramEntity.acc_sta}
 			</if>
 		</where>
 		limit #{start},#{rows}
@@ -55,8 +55,8 @@
 			<if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
 				and acc_rname like #{paramEntity.acc_rname}
 			</if>
-			<if test="not(paramEntity.acc_tel==null or  paramEntity.acc_tel=='')">
-				and acc_tel like #{paramEntity.acc_tel}
+			<if test="not(paramEntity.acc_sta==null or  paramEntity.acc_sta=='')">
+				and acc_sta = #{paramEntity.acc_sta}
 			</if>
 		</where>
 	</select>
