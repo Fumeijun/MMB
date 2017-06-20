@@ -91,10 +91,6 @@
 				acc_marr=#{acc_marr},acc_chi=#{acc_chi}
 				 where acc_id=#{acc_id}
 	</update>
-	<!-- 审核后插入用户表 -->
-	<insert id="insert" parameterType="account">
-		insert into account(acc_lname,acc_pwd,acc_age,acc_idno,acc_tel) 
-		values(#{acc_lname},#{acc_pwd},#{acc_age},#{acc_idno},#{acc_tel})
-	</insert>
+	
 
 </mapper>

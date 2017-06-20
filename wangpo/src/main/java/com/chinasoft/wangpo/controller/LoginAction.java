@@ -79,6 +79,7 @@ public class LoginAction {
 	    @RequestMapping("/admin")
 	    public String adminLogin(HttpServletRequest req, HttpServletResponse resp,Admin admin){
 	    	String pwd=admin.getAdm_pwd();
+	    	System.out.println(""+pwd);
 	    	String md5=Md5Util.md5(pwd);
 	    	admin.setAdm_pwd(md5);
 	    	Admin ad2=adminLoginService.adminLogin(admin);
