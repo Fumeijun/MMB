@@ -26,6 +26,8 @@ public class BaseServiceImpl<T>implements BaseService<T> {
     protected AccountDao accountDao;
     @Autowired//自动装配RegisterDao实现类的对象
 	protected RegisterDao registerDao;
+    @Autowired
+    protected EventDao eventDao;
 
     protected BaseDao<T> baseDao;
 

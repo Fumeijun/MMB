@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasoft.wangpo.dao.EventDao">
+    <resultMap id="eventResults" type="com.chinasoft.wangpo.entity.Event">
+        <id column="e_id" property="e_id"/>
+        <result column="e_atime" property="e_atime"/>
+        <result column="e_stime" property="e_stime"/>
+        <result column="e_type" property="e_type"/>
+        <result column="e_maxqua" property="e_maxqua"/>
+        <result column="e_model" property="e_model"/>
+        <result column="e_sta" property="e_sta"/>
+        <association property="e_acc" javaType="com.chinasoft.wangpo.entity.Account">
+            <id property="cacc_id" column="acc_id"/>
+            <result column="cacc_rname" property="acc_rname" />
+            <result column="cacc_gender" property="acc_gender" />
+            <result column="cacc_age" property="acc_age" />
+            <result column="cacc_tel" property="acc_tel" />
+        </association>
+        <collection property="eact" ofType="com.chinasoft.wangpo.entity.Account">
+            <id property="dacc_id" column="acc_id"/>
+            <result column="dacc_rname" property="acc_rname" />
+            <result column="dacc_gender" property="acc_gender" />
+            <result column="dacc_age" property="acc_age" />
+            <result column="dacc_tel" property="acc_tel" />
+        </collection>
+    </resultMap>
+
+
+    <!-- 通过多条件分页查询，返回列表数据 -->
+    <select id="selectPageListUseDyc" parameterType="page"
+            resultMap="eventResults">
+        select * from account a ,event e
+        <where>
+            a.acc_id = e.e_acc
+            <if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
+                and a.acc_rname like #{paramEntity.acc_rname}
+            </if>
+            <if test="not(paramEntity.acc_tel==null or  paramEntity.acc_tel=='')">
+                and acc_tel like #{paramEntity.acc_tel}
+            </if>
+        </where>
+        limit #{start},#{rows}
+    </select>
+    <!-- 通过多条件分页查询，返回总记录数 -->
+    <select id="selectPageCountUseDyc" parameterType="page" resultType="integer">
+        select count(0) from account a ,event e
+        <where>
+            <if test="not(paramEntity.acc_rname==null or  paramEntity.acc_rname=='')">
+                and a.acc_rname like #{paramEntity.acc_rname}
+            </if>
+            <if test="not(paramEntity.acc_tel==null or  paramEntity.acc_tel=='')">
+                and acc_tel like #{paramEntity.acc_tel}
+            </if>
+            and a.acc_id = e.e_acc
+        </where>
+    </select>
+</mapper>
