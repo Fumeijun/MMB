@@ -23,6 +23,7 @@
 		<result column="acc_page" property="acc_page"/>
 		<result column="acc_chi" property="acc_chi"/>
 		<result column="acc_sta" property="acc_sta"/>
+		<result column="acc_type" property="acc_type"/>
 		<association property="type" javaType="com.chinasoft.wangpo.entity.Type">
 		<id property="t_id" column="t_id"/>
 		<result property="t_type" column="t_type"/>

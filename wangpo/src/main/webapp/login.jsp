@@ -74,7 +74,7 @@
         </div>
         <div style="color:red" >${requestScope.errMsg}</div>
         
-     	<td>验证码：</td><td valign="bottom"><input type="text" name="vercode" size="10" id="code"/> 
+     	<td>验证码：</td><td valign="bottom"><input type="text" name="vercode" size="10" id="code" class="easyui-validatebox"/> 
      	<img alt="" src="${proPath}/vacode/getVacode.do" mce_src="authImg" id="authImg" align="absmiddle">
      	<a href="javascript:void(0)" mce_href="#" onclick="refresh()">
      	<span style="font-size:12px" mce_style="font-size:12px">看不清楚？点我呀</span></a></td>
