@@ -22,6 +22,7 @@
 	<result column="acc_page" property="acc_page" jdbcType="VARCHAR"/>
 	<result column="acc_chi" property="acc_chi" jdbcType="INTEGER"/>
 	<result column="acc_sta" property="acc_sta" jdbcType="INTEGER"/>
+	<result column="acc_type" property="acc_type" jdbcType="INTEGER"/>
 	<association property="type" javaType="com.chinasoft.wangpo.entity.Type">
 		<id property="t_id" column="t_id"/>
 		<result property="t_type" column="t_type"/>
@@ -77,9 +78,11 @@
 		acc_id=#{acc_id}
 	</update>
 
-<select id="select" parameterType="account" resultMap="accountResults">
-		SELECT * FROM account where acc_lname=#{acc_lname}
+   <select id="queryPer" parameterType="account" resultMap="accountResults">
+		select * from account a,types t where a.acc_lname=#{acc_lname}  
+						and t.t_id=a.acc_type
 	</select>
+	
 	<update id="updateByPK" parameterType="account">
 		update account set acc_lname=#{acc_lname},
 				acc_rname=#{acc_rname},acc_gender=#{acc_gender}, 

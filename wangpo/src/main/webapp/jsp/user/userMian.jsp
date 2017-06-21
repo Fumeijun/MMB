@@ -32,6 +32,7 @@
                 <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">会员重置</a></li>
                 <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">搜索好友</a></li>
                 <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">参加活动</a></li>
+           		<li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="${proPath}/jsp/user/password.jsp" iframe="0">修改密码</a></li>
             </ul>
         </div>
         <div title="我的好友" data-options="iconCls:'icon-application-form-edit'" style="padding:5px;">
