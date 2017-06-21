@@ -19,11 +19,25 @@ public class EventAction {
     @Autowired
     private EventService eventService;
 
-    @RequestMapping("/eventSelect")
+    @RequestMapping("/adminSelect")
     @ResponseBody
-    public Integer selectPageUseDyc(Page<Event> page, Event event){
+    public Object adminSelect(Page<Event> page, Event event){
         page.setParamEntity(event);
-        System.err.println(eventService.selectPageUseDyc(page).getPageMap().toString());
-        return 1;
+        return eventService.selectPage(page).getPageMap();
+    }
+
+    @RequestMapping("/check")
+    @ResponseBody
+    public Integer checkByPK(Event event){
+        System.err.println(event.toString());
+        return eventService.checkByPK(event);
+    }
+
+    @RequestMapping("/userSelect")
+    @ResponseBody
+    public Object userSelect(Page<Event> page, Event event){
+        System.out.println(event.toString());
+        page.setParamEntity(event);
+        return eventService.selectPageUseDyc(page).getPageMap();
     }
 }

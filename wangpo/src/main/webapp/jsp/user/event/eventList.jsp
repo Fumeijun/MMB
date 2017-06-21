@@ -19,30 +19,30 @@
     <script type="text/javascript">
         $(function(){
             $('#dg').datagrid({
-                url:'${proPath}/event/eventSelect.do', //支持多个条件的分页查询
+                url:'${proPath}/event/userSelect.do', //支持多个条件的分页查询
                 striped:true,
                 fitColumns:true,
-                idField:'acc_id',
+                idField:'e_id',
                 rownumbers:true,
                 loadMsg:"加载中，请稍等...",
                 pagination:true,
                 pageSize:15,
                 pageList:[5,15,25,50],
-                toolbar: [/*{
-                 iconCls: 'icon-add',
-                 text:'添加',
-                 handler: function(){
-                 alert('add按钮');
-                 parent.$('#win').window({
-                 title:'添加用户',
-                 width:600,
-                 height:400,
-                 modal:true,
-                 content:"<iframe src='￥{proPath}/' title='添加用户' height='100%' width='100%' frameborder='0px' ></iframe>"
+                toolbar: [{
+                     iconCls: 'icon-add',
+                     text:'添加',
+                     handler: function(){
+                     alert('add按钮');
+                     parent.$('#win').window({
+                     title:'添加用户',
+                     width:600,
+                     height:400,
+                     modal:true,
+                     content:"<iframe src='${proPath}/' title='添加用户' height='100%' width='100%' frameborder='0px' ></iframe>"
 
                  });
                  }
-                 },'-',*/{
+                 },'-',{
                     iconCls: 'icon-edit',
                     text:'修改',
                     handler: function(){
@@ -110,62 +110,55 @@
 
                         }
                     },'-',{
-                        text:"<input type='text' id='acc_rname' name='acc_rname'/>"
+                        text:"<input type='text'  id='e_stime' name='e_stime' required='required'/>"
                     },'-',{
-                        text:"<input type='text' id='acc_sta' name='acc_sta'/>"
+                        text:"<input type='text'  id='acc_rname' name='acc_rname'/>"
                     }],
-/*
-*
-* private Integer e_id; //活动ID
- private Integer e_acc; //发起账号id
- private String e_atime; //申请时间
- private String e_sta; //活动状态
- private String e_stime; //活动开始时间
- private String e_type; //活动类型
- private Integer e_maxqua; //活动最大人数
- private String e_model; // 活动模式
- private List<Account> eact; //参加人员名单
-*
-*
-* */
                 columns:[[
                     {checkbox:true},
                     {field:'e_id',title:'活动ID',width:100},
-                    {field:'e_acc',title:'发起人',width:100,formatter:function(e_acc){
-                        return e_acc.acc_rname;
+                    {field:'e_acc.acc_rname',title:'发起人',width:100,formatter:function  (vule,acc){
+                        return acc.e_acc['acc_rname'];
                     }},
                     {field:'e_atime',title:'申请时间',width:100},
-                    {field:'acc_tel',title:'联系电话',width:100,formatter:function(e_acc){
-                        return e_acc.acc_tel;
+                    {field:'e_acc.acc_tel',title:'联系电话',width:100,formatter:function (vule,acc){
+                        return acc.e_acc['acc_tel'];
                     }},
                     {field:'e_stime',title:'开始时间',width:100},
                     {field:'e_type',title:'活动类型',width:100},
                     {field:'e_maxqua',title:'活动最大人数',width:100},
+                    {field:'eact',title:'参加人数',width:100,formatter:function (eact){
+                        return eact.length}},
                     {field:'e_model',title:'活动模式',width:100},
-                    {field:'e_sta',title:'审核状态',width:100}
+                    {field:'e_remark',title:'活动模式',width:100}
                 ]]
             });
 
-            $('#acc_sta').searchbox({
+            $('#acc_rname').searchbox({
                 searcher:function(value,name){
+                    var time= $('#e_stime').datebox('getValue')
+                    alert(timeParam(time))
                     $('#dg').datagrid('load',{
-                        rname:likeParam($('#rname').val()),
-                        acc_sta:value
+                        'e_stime':timeParam(time),
+                        'e_acc.acc_rname':likeParam(value)
                     });
                 },
-                prompt:'正常:0,锁定:1,封禁:2'
+                prompt:'请输入申请人名字'
             });
-
+            $('#e_stime').datebox({
+                required:false,
+            });
         });
         //
         function likeParam(value){
-            if(value==""){
-                return "";
-            }else{
-                return '%'+value+'%';
-            }
+            return '%'+value+'%';
         }
-
+        function timeParam(time) {
+            if(time==null||time==''){
+                return 'CURDATE()';
+            }
+            return time;
+        }
     </script>
 
 </head>

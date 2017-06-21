@@ -8,14 +8,15 @@ import java.util.List;
  */
 public class Event {
     private Integer e_id; //活动ID
-    private Account e_acc; //发起账号id
+    private Account e_acc; //发起账号
     private String e_atime; //申请时间
     private String e_sta; //活动状态
-    private String e_stime; //活动开始时间
+    private String e_stime="CURDATE()"; //活动开始时间
     private String e_type; //活动类型
     private Integer e_maxqua; //活动最大人数
     private String e_model; // 活动模式
     private List<Account> eact; //参加人员名单
+    private String e_remark; //备注
 
     public Integer getE_id() {
         return e_id;
@@ -89,6 +90,13 @@ public class Event {
         this.eact = eact;
     }
 
+    public String getE_remark() {
+        return e_remark;
+    }
+
+    public void setE_remark(String e_remark) {
+        this.e_remark = e_remark;
+    }
 
     @Override
     public String toString() {
@@ -102,6 +110,7 @@ public class Event {
                 ", e_maxqua=" + e_maxqua +
                 ", e_model='" + e_model + '\'' +
                 ", eact=" + eact +
+                ", e_remark='" + e_remark + '\'' +
                 '}';
     }
 }
