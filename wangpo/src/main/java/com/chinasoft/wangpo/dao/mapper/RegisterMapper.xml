@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace对应具体操作的接口，可看做接口的实现类  -->
 <mapper namespace="com.chinasoft.wangpo.dao.RegisterDao">
 	<resultMap id="registerResults" type="com.chinasoft.wangpo.entity.Register">
 		<id column="rid" property="rid" jdbcType="INTEGER"/>

@@ -69,7 +69,7 @@
         <div title="王婆一对一">
             <!-- list-style: none去左边的点；text-decoration: none：去超链接下划线,title用来区分后继定位这里的超链接 -->
             <ul style="list-style: none;padding: 0px;margin:0px;width: auto;height: auto">
-                <li style="padding: 6px;width: auto;height: auto"><a href="#" title="王婆一对一"
+                <li style="padding: 6px;width: auto;height: auto"><a href="${proPath}" title="王婆一对一"
                                              style="text-decoration: none;display: block;font-weight:bold;">王婆一对一</a>
                 </li>
                 <li style="padding: 6px;width: auto;height: auto"><a href="#" title="王婆一对一"
