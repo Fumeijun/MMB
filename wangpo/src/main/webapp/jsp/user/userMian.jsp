@@ -56,7 +56,7 @@
         <div title="王婆一对一" data-options="iconCls:'icon-cart'" style="padding:5px;">
             <ul class="easyui-tree wu-side-tree">
                 <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="layout-3.html" iframe="0">导航标题</a></li>
-                <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
+                <li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="${proPath}/jsp/lye/onetoone.jsp" iframe="1">导航标题</a></li>
                 <li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
                 <li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
                 <li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">导航标题</a></li>
