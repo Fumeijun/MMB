@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+
 /**
  * @author Makise
  *         date 2017-06-20 16:40
@@ -29,15 +31,24 @@ public class EventAction {
     @RequestMapping("/check")
     @ResponseBody
     public Integer checkByPK(Event event){
-        System.err.println(event.toString());
+        //System.err.println(event.toString());
         return eventService.checkByPK(event);
     }
 
     @RequestMapping("/userSelect")
     @ResponseBody
     public Object userSelect(Page<Event> page, Event event){
-        System.out.println(event.toString());
+        //System.out.println(event.toString());
         page.setParamEntity(event);
         return eventService.selectPageUseDyc(page).getPageMap();
+    }
+
+    @RequestMapping("/joinEvent")
+    @ResponseBody
+    public Integer inserts(String pk, Integer account){
+        HashMap<String, String> map=new HashMap();
+        map.put("e_id",pk);
+        map.put("a_id", String.valueOf(account));
+        return eventService.inserts(map);
     }
 }

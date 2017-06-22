@@ -96,6 +96,7 @@
     &copy; 2017 Wangpo All Rights Reserved
 </div>
 </div>
+<div id="win"></div>
 <!-- end of footer -->
 <script type="text/javascript">
     $(function () {

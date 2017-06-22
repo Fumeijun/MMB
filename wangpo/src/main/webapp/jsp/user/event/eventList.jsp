@@ -29,88 +29,76 @@
                 pageSize:15,
                 pageList:[5,15,25,50],
                 toolbar: [{
-                     iconCls: 'icon-add',
-                     text:'添加',
-                     handler: function(){
+                 iconCls: 'icon-add1',
+                 text:'创建活动',
+                 handler: function(){
                      alert('add按钮');
                      parent.$('#win').window({
-                     title:'添加用户',
+                     title:'创建活动',
                      width:600,
                      height:400,
                      modal:true,
-                     content:"<iframe src='${proPath}/' title='添加用户' height='100%' width='100%' frameborder='0px' ></iframe>"
-
+                     content:"<iframe src='${proPath}/jsp/user/event/adde.jsp' title='创建活动' height='100%' width='100%' frameborder='0px' ></iframe>"
                  });
                  }
-                 },'-',{
-                    iconCls: 'icon-edit',
-                    text:'修改',
+                 },'-',
+                    {
+                    iconCls: 'icon-add',
+                    text:'申请参加',
                     handler: function(){
-                        alert('edit按钮');
+                       // alert('参加按钮');
                         var rows = $('#dg').datagrid('getSelections');
                         if(rows.length!=1){
-                            alert("请选择并且只能选择一条修改的记录！");
+                            alert("请选择并且只能选择一个活动！");
                             return false;
                         }
-
-                        parent.$('#win').window({
-                            title:'修改用户信息',
-                            width:600,
-                            height:400,
-                            modal:true,
-                            content:"<iframe src='${proPath}/jsp/admin/account/accUpdate.jsp ' title='修改用户信息' height='100%' width='100%' frameborder='0px' ></iframe>"
+                        //2.获取行中记录ID数组
+                        var id = rows[0].e_id;
+                        var account = ${sessionScope.user.acc_id};
+                        parent.$.messager.confirm('确认对话框', '您确认要参加吗？', function(r) {
+                            if (r) {
+                                var flag = 0;
+                                if (rows[0].e_maxqua<=rows[0].eact.length){
+                                    $.messager.alert('满员','该活动人数已满请选择其他活动！','error');
+                                    flag++;
+                                }else {
+                                    $.each(rows[0].eact,function (index,obj) {
+                                        if (obj.acc_tel==${sessionScope.user.acc_tel}){
+                                            $.messager.alert('已参加','您已参加该活动，请勿重复参加！','error');
+                                            flag++;
+                                        }
+                                    })
+                                }
+                            if (flag==0){
+                                $.ajax({
+                                    url: "${proPath}/event/joinEvent.do",
+                                    type:"POST",
+                                    //设置为传统方式传送参数
+                                    traditional:true,
+                                    data:{pk:id,account:account},
+                                    success: function(html){
+                                        if(html>0){
+                                            $.messager.alert('成功','恭喜您，申请成功！','info');
+                                        }else{
+                                            $.messager.alert('失败','对不起，申请失败！','info');
+                                        }
+                                        //重新刷新页面
+                                        $("#dg").datagrid("reload");
+                                        //请除所有勾选的行
+                                        $("#dg").datagrid("clearSelections");
+                                    },
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                        $.messager.alert('删除错误','请联系管理员！','error');
+                                    },
+                                    dataType:'json'
+                                });
+                            }
+                            }
                         });
 
                     }
-                }
-                    ,'-',{
-                        iconCls: 'icon-remove',
-                        text:'删除',
-                        handler: function(){
-                            //1.获取选择的行，判断是否有选中
-                            var rows = $('#dg').datagrid("getSelections");
-                            if(rows.length==0){
-                                alert("请选择需要删除的记录！");
-                                return false;
-                            }
-                            //2.获取行中记录ID数组
-                            var ids = new Array();
-                            for(var i=0;i<rows.length;i++){
-                                alert(rows[i].acc_id);
-                                ids[i]=rows[i].acc_id;
-                            }
-                            parent.$.messager.confirm('删除对话框', '您确认要删除吗？', function(r) {
-                                if (r) {
-                                    alert(r);
-                                    $.ajax({
-                                        url: "${proPath}/account/deleteList.do",
-                                        type:"POST",
-                                        //设置为传统方式传送参数
-                                        traditional:true,
-                                        data:{pks:ids},
-                                        success: function(html){
-                                            if(html>0){
-                                                alert("恭喜您，删除成功，共删除了"+html+"条记录！");
-                                            }else{
-                                                alert("对不起，删除失败，请联系管理员！");
-                                            }
-                                            //重新刷新页面
-                                            $("#dg").datagrid("reload");
-                                            //请除所有勾选的行
-                                            $("#dg").datagrid("clearSelections");
-                                        },
-                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                            $.messager.alert('删除错误','请联系管理员！','error');
-                                        },
-                                        dataType:'json'
-                                    });
-                                }
-                            });
-
-
-                        }
-                    },'-',{
-                        text:"<input type='text'  id='e_stime' name='e_stime' required='required'/>"
+                },'-',{
+                        text:"<input type='text'  id='e_stime' name='e_stime' />"
                     },'-',{
                         text:"<input type='text'  id='acc_rname' name='acc_rname'/>"
                     }],
@@ -118,7 +106,7 @@
                     {checkbox:true},
                     {field:'e_id',title:'活动ID',width:100},
                     {field:'e_acc.acc_rname',title:'发起人',width:100,formatter:function  (vule,acc){
-                        return acc.e_acc['acc_rname'];
+                        return acc.e_acc.acc_rname;
                     }},
                     {field:'e_atime',title:'申请时间',width:100},
                     {field:'e_acc.acc_tel',title:'联系电话',width:100,formatter:function (vule,acc){
@@ -127,16 +115,33 @@
                     {field:'e_stime',title:'开始时间',width:100},
                     {field:'e_type',title:'活动类型',width:100},
                     {field:'e_maxqua',title:'活动最大人数',width:100},
-                    {field:'eact',title:'参加人数',width:100,formatter:function (eact){
-                        return eact.length}},
+                    {field:'eact',title:'报名人数',width:100,formatter:function (eact) {
+                        return eact.length;
+                    }},
                     {field:'e_model',title:'活动模式',width:100},
-                    {field:'e_remark',title:'活动模式',width:100}
+                    {field:'e_remark',title:'活动备注',width:100},
+                    {field:'join',title:'参加状态',width:100,formatter:function (vaule,row) {
+                        var a=0;
+                        $.each(row.eact,function (index,obj) {
+                            if(obj.acc_tel==${sessionScope.user.acc_tel}){
+                               a=1;
+                               return false;
+                            }else{
+                                a=0;
+                            }
+                        })
+                        if (a==0){
+                            return"未参加";
+                        }else {
+                            return"已参加";
+                        }
+                    }}
                 ]]
             });
 
             $('#acc_rname').searchbox({
                 searcher:function(value,name){
-                    var time= $('#e_stime').datebox('getValue')
+                    var time= $('#e_stime').datebox('getValue');
                     alert(timeParam(time))
                     $('#dg').datagrid('load',{
                         'e_stime':timeParam(time),

@@ -71,7 +71,7 @@ public class Md5Util {
      * @param args
      */
     public static void main(String[] args) {
-      String srt="123456";
+      String srt="zqd123";
       String md5 = md5(srt);
       System.out.println(md5);
 

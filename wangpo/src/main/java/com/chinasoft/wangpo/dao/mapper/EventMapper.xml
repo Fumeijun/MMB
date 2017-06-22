@@ -73,7 +73,7 @@
             <if test="not(paramEntity.e_stime==null or paramEntity.e_stime=='')">
                 and e.e_stime <![CDATA[>=]]> ${paramEntity.e_stime}
             </if>
-            and re.de_id = e.e_id and a.acc_id= e.e_acc and al.e_id =e.e_id
+            and e.e_sta = 1 and re.de_id = e.e_id and a.acc_id= e.e_acc and al.e_id =e.e_id
         </where>
         limit #{start},#{rows}
     </select>
@@ -88,7 +88,11 @@
             <if test="not(paramEntity.e_stime==null or paramEntity.e_stime=='')">
                 and e.e_stime <![CDATA[>=]]>${paramEntity.e_stime}
             </if>
-            and re.de_id = e.e_id and a.acc_id= e.e_acc and al.e_id =e.e_id
+            and e.e_sta = 1 and re.de_id = e.e_id and a.acc_id= e.e_acc and al.e_id =e.e_id
         </where>
     </select>
+    <!-- 根据主键插入 -->
+    <insert id="inserts" >
+        insert into eventlist (e_id,a_id) values (#{e_id},#{a_id})
+    </insert>
 </mapper>
