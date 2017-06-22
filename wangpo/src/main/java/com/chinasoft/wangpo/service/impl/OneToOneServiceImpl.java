@@ -7,4 +7,5 @@ import com.chinasoft.wangpo.service.OneToOneService;
 @Service("onetooneService")
 public class OneToOneServiceImpl extends BaseServiceImpl<One4one> implements OneToOneService{
 	//
+	public void lala(){}
 }
