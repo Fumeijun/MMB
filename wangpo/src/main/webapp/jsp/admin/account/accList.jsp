@@ -127,7 +127,18 @@
                     {field:'type',title:'用户类型',width:100,formatter:function(type){
                         return type.t_type;
                     }},
-                    {field:'acc_sta',title:'用户状态',width:100,
+                    {field:'acc_sta',title:'用户状态',width:100,formatter:function(acc_sta){
+                        switch(acc_sta){
+                            case 0:
+                                return'正常状态';
+                            case 1:
+                                return'锁定状态';
+                            case 2:
+                                return'封禁状态';
+                            default:
+                                return'不明错误';
+                        }
+                    }
                     }
                 ]]
             });
