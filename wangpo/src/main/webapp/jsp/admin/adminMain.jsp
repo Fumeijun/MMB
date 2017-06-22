@@ -57,10 +57,7 @@
         <div title="活动管理">
             <!-- list-style: none去左边的点；text-decoration: none：去超链接下划线,title用来区分后继定位这里的超链接 -->
             <ul style="list-style: none;padding: 0px;margin:0px;width: auto;height: auto">
-                <li style="padding: 6px;width: auto;height: auto"><a href="#" title="查看活动"
-                                             style="text-decoration: none;display: block;font-weight:bold;">查看活动</a>
-                </li>
-                <li style="padding: 6px;width: auto;height: auto"><a href="#" title="管理活动"
+                <li style="padding: 6px;width: auto;height: auto"><a href="${proPath}/jsp/admin/event/eventList.jsp" title="管理活动"
                                              style="text-decoration: none;display: block;font-weight:bold;" >管理活动</a>
                 </li>
             </ul>

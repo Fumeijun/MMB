@@ -18,5 +18,5 @@ public interface AccountService extends BaseService<Account> {
 
     public Account addFriends(Account account);
 
-
+    public Account queryPer(Account account);
 }

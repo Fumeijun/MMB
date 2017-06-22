@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasoft.wangpo.dao.EventDao">
+    <resultMap id="eventResults" type="com.chinasoft.wangpo.entity.Event">
+        <id column="e_id" property="e_id" jdbcType="INTEGER"/>
+        <result column="e_atime" property="e_atime"/>
+        <result column="e_stime" property="e_stime"/>
+        <result column="e_type" property="e_type"  jdbcType="VARCHAR"/>
+        <result column="e_maxqua" property="e_maxqua" jdbcType="INTEGER"/>
+        <result column="e_model" property="e_model"  jdbcType="VARCHAR"/>
+        <result column="e_sta" property="e_sta" jdbcType="INTEGER"/>
+        <result column="e_remark" property="e_remark" jdbcType="VARCHAR"/>
+        <association property="e_acc" javaType="com.chinasoft.wangpo.entity.Account">
+            <id property="cacc_id" column="acc_id" jdbcType="INTEGER"/>
+            <result column="cacc_rname" property="acc_rname"  jdbcType="VARCHAR"/>
+            <result column="cacc_gender" property="acc_gender" jdbcType="VARCHAR" />
+            <result column="cacc_age" property="acc_age" />
+            <result column="cacc_tel" property="acc_tel"  jdbcType="VARCHAR" />
+        </association>
+        <collection property="eact" ofType="com.chinasoft.wangpo.entity.Account">
+            <id property="dacc_id" column="acc_id" jdbcType="INTEGER"/>
+            <result column="dacc_rname" property="acc_rname"  jdbcType="VARCHAR" />
+            <result column="dacc_gender" property="acc_gender"  jdbcType="VARCHAR" />
+            <result column="dacc_age" property="acc_age" jdbcType="INTEGER"/>
+            <result column="dacc_tel" property="acc_tel"  jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+
+
+    <!-- 通过多条件分页查询，返回列表数据 -->
+    <select id="selectPageList" parameterType="page"
+            resultMap="eventResults">
+        SELECT distinct a.acc_id cacc_id ,a.acc_rname cacc_rname,a.acc_gender cacc_gender ,a.acc_age cacc_age ,a.acc_tel cacc_tel ,re.dacc_id ,
+        re.dacc_rname ,re.dcc_gender ,re.dacc_age ,re.dacc_tel ,re.de_id, e.e_id,e.e_stime ,e.e_type ,e.e_maxqua ,e.e_model , e.e_atime ,e.e_sta ,e.e_remark
+        FROM(SELECT ac.acc_id dacc_id,ac.acc_rname dacc_rname,ac.acc_gender dcc_gender,ac.acc_age dacc_age,ac.acc_tel dacc_tel,el.e_id de_id
+        FROM eventlist el,account ac where el.a_id=ac.acc_id) re,event e , eventlist al ,account a
+        <where>
+            <if test="not(paramEntity.e_acc==null)">
+                and a.acc_rname like #{paramEntity.e_acc.acc_rname}
+            </if>
+             and e.e_sta = 0 and re.de_id = e.e_id and a.acc_id= e.e_acc and al.e_id =e.e_id
+        </where>
+        limit #{start},#{rows}
+    </select>
+    <!-- 通过多条件分页查询，返回总记录数 -->
+    <select id="selectPageCount" parameterType="page" resultType="integer">
+        SELECT COUNT(distinct a.acc_rname) FROM(SELECT ac.acc_id dacc_id,ac.acc_rname dacc_rname,ac.acc_gender dcc_gender,ac.acc_age dacc_age,ac.acc_tel dacc_tel,el.e_id de_id
+        FROM eventlist el,account ac where el.a_id=ac.acc_id) re,event e , eventlist al ,account a
+        <where>
+            <if test="not(paramEntity.e_acc==null)">
+                and a.acc_rname like #{paramEntity.e_acc.acc_rname}
+            </if>
+            and e.e_sta = 0 and re.de_id = e.e_id and a.acc_id= e.e_acc and al.e_id =e.e_id
+        </where>
+    </select>
+    <!--审核-->
+    <update id="checkByPK" parameterType="event">
+        update event set
+        e_sta=#{e_sta}
+        where e_id=#{e_id}
+    </update>
+    <!-- 通过多条件分页查询，返回列表数据 -->
+    <select id="selectPageListUseDyc" parameterType="page"
+            resultMap="eventResults">
+        SELECT distinct a.acc_id cacc_id ,a.acc_rname cacc_rname,a.acc_gender cacc_gender ,a.acc_age cacc_age ,a.acc_tel cacc_tel ,re.dacc_id ,
+        re.dacc_rname ,re.dcc_gender ,re.dacc_age ,re.dacc_tel ,re.de_id, e.e_id,e.e_stime ,e.e_type ,e.e_maxqua ,e.e_model , e.e_atime ,e.e_sta ,e.e_remark
+        FROM(SELECT ac.acc_id dacc_id,ac.acc_rname dacc_rname,ac.acc_gender dcc_gender,ac.acc_age dacc_age,ac.acc_tel dacc_tel,el.e_id de_id
+        FROM eventlist el,account ac where el.a_id=ac.acc_id) re,event e , eventlist al ,account a
+        <where>
+            <if test="not(paramEntity.e_acc==null)">
+                and a.acc_rname like #{paramEntity.e_acc.acc_rname}
+            </if>
+            <if test="not(paramEntity.e_stime==null or paramEntity.e_stime=='')">
+                and e.e_stime <![CDATA[>=]]> ${paramEntity.e_stime}
+            </if>
+            and re.de_id = e.e_id and a.acc_id= e.e_acc and al.e_id =e.e_id
+        </where>
+        limit #{start},#{rows}
+    </select>
+    <!-- 通过多条件分页查询，返回总记录数 -->
+    <select id="selectPageCountUseDyc" parameterType="page" resultType="integer">
+        SELECT COUNT(distinct a.acc_rname) FROM(SELECT ac.acc_id dacc_id,ac.acc_rname dacc_rname,ac.acc_gender dcc_gender,ac.acc_age dacc_age,ac.acc_tel dacc_tel,el.e_id de_id
+        FROM eventlist el,account ac where el.a_id=ac.acc_id) re,event e , eventlist al ,account a
+        <where>
+            <if test="not(paramEntity.e_acc==null)">
+                and a.acc_rname like #{paramEntity.e_acc.acc_rname}
+            </if>
+            <if test="not(paramEntity.e_stime==null or paramEntity.e_stime=='')">
+                and e.e_stime <![CDATA[>=]]>${paramEntity.e_stime}
+            </if>
+            and re.de_id = e.e_id and a.acc_id= e.e_acc and al.e_id =e.e_id
+        </where>
+    </select>
+</mapper>

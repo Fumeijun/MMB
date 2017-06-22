@@ -3,6 +3,13 @@
 <%@include file="../../common/common.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script type="text/javascript" src="resource/jquery-easyui-1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="resource/jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="resource/jquery-easyui-1.5.2/plugins/jquery.validatebox.js"></script>
+<script type="text/javascript" src="resource/jquery-easyui-1.5.2/plugins/jquery.pagination.js"></script>
+<script type="text/javascript" src="resource/jquery-easyui-1.5.2/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" href="resource/jquery-easyui-1.5.2/themes/default/easyui.css">
+<link rel="stylesheet" href="resource/jquery-easyui-1.5.2/themes/icon.css">
 <script type="text/javascript">
 	/* $.extend($.fn.validatebox.defaults.rules, { */ 
    	 	/*必须和某个字段相等*/  
@@ -89,6 +96,30 @@
 	})
 	
 	
+		function update(){
+	
+		$("#updateForm").form("submit",
+				{
+					url:$("#saveUrl").val(),
+					onSubmit:function(){
+				
+						return $(this).form('validate');
+					},
+					success:function(data){
+						var json=eval("("+data+")");
+						alert(json.tip);
+						$("#updateDlg").dialog("close");
+						$("#table").datagrid("reload");
+					}
+			
+				});
+		
+	}
+	function closeDlg(){
+		$("#updateForm").form("clear");
+		$("#updateDlg").dialog("close");
+	}
+	
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -104,32 +135,32 @@
 		<label>确认密码：</label><input type="password" name="acc_pwd" id="acc_pwd" 
 					class="easyui-validatebox"  validType="equalTo['#password']" invalidMessage="两次输入密码不匹配"/><br>--%>
 		<label>用&nbsp&nbsp户&nbsp 名：</label><input value="${sessionScope.user.acc_lname}" class="easyui-validatebox" type="text" name="acc_lname" readonly="ture" / ><br> 
-		<label>性&nbsp&nbsp&nbsp&nbsp&nbsp别：</label>
-		<select value="${sessionScope.user.acc_gender}" id="acc_gender" class="easyui_combobx" style="width:70px" name="acc_gender">
+		<label>性&nbsp&nbsp&nbsp&nbsp&nbsp别：</label><input value="${sessionScope.user.acc_gender}" readonly="ture">
+		<select  id="acc_gender" class="easyui_combobx" style="width:70px" name="acc_gender">
 			<option value="男">男</option>   
 			<option value="女">女</option>   
 			<option value="其它">其它</option>
 			</select><br>
 		<label>年&nbsp&nbsp&nbsp&nbsp&nbsp龄：</label><input value="${sessionScope.user.acc_age}" id="acc_age" class="easyui-validatebox" type="text" name="acc_age" data-options="required:true" / ><br>
-		<label>职&nbsp&nbsp&nbsp&nbsp&nbsp业：</label>
-			<select value="${sessionScope.user.acc_pro}" id="acc_pro" class="easyui_combobx" style="width:92px" name="acc_pro">
-			<option value="0">失业</option>   
-			<option value="1">工薪阶层</option>   
-			<option value="2">城市白领</option>
-			<option value="3">苦逼程序猿</option>
-			<option value="4">自由职业</option>
-			<option value="5">人生巅峰</option>
-			<option value="6">其他</option>
+		<label>职&nbsp&nbsp&nbsp&nbsp&nbsp业：</label><input value="${sessionScope.user.acc_pro}" readonly="true">
+			<select  id="acc_pro" class="easyui_combobx" style="width:92px" name="acc_pro">
+			<option value="失业">失业</option>   
+			<option value="工薪阶层">工薪阶层</option>   
+			<option value="城市白领">城市白领</option>
+			<option value="苦逼程序猿">苦逼程序猿</option>
+			<option value="自由职业">自由职业</option>
+			<option value="人生巅峰">人生巅峰</option>
+			<option value="其他">其他</option>
 			</select><br>
-		<label>薪&nbsp&nbsp&nbsp&nbsp&nbsp资：</label>
-			<select value="${sessionScope.user.acc_pay}" id="acc_pay" class="easyui_combobx" style="width:92px" name="acc_pay">
+		<label>薪&nbsp&nbsp&nbsp&nbsp&nbsp资：</label><input value="${sessionScope.user.acc_pay}" readonly="true">
+			<select  id="acc_pay" class="easyui_combobx" style="width:92px" name="acc_pay">
 			<option value="0-2000">0-2000</option>   
 			<option value="2000-4000">2000-4000</option>   
 			<option value="4000-6000">4000-6000</option>
 			<option value="6000-10000">6000-10000</option>
 			<option value="给别人发工资">给别人发工资</option>
 			</select><br>
-		<label>学&nbsp&nbsp&nbsp&nbsp&nbsp历：</label>
+		<label>学&nbsp&nbsp&nbsp&nbsp&nbsp历：</label><input value="${sessionScope.user.acc_edu}" readonly="true">
 			<select value="${sessionScope.user.acc_edu}" id="acc_edu" class="easyui_combobx" style="width:92px" name="acc_edu">
 			<option value="高中以下">高中以下</option>   
 			<option value="高中">高中</option>   
@@ -147,23 +178,49 @@
 			<!-- <label>用户头像：</label><input class="easyui-validatebox" type="text" name="acc_lname" data-options="required:true" / ><br>
  				-->		
  		<label>用户地址：</label><input value="${sessionScope.user.acc_addr}" class="easyui-validatebox" type="text" name="acc_addr" data-options="required:true" / ><br>
-		<label>婚姻状况：</label>
-			<select value="${sessionScope.user.acc_marr}" id="acc_marr" class="easyui_combobx" style="width:70px" name="acc_marr">
-			<option value="0">单身狗</option>   
-			<option value="1">刚分手</option>   
-			<option value="2">刚离婚</option>
+		<label>婚姻状况：</label><input value="${sessionScope.user.acc_marr}" readonly="true">
+			<select  id="acc_marr" class="easyui_combobx" style="width:70px" name="acc_marr">
+			<option value="单身狗">单身狗</option>   
+			<option value="刚分手">刚分手</option>   
+			<option value="刚离婚">刚离婚</option>
 			</select><br>
-		<label>小孩数量：</label>
-			<select value="${sessionScope.user.acc_chi}" id="acc_chi" class="easyui_combobx" style="width:70px" name="acc_chi">
-			<option value="0">没有</option>   
-			<option value="1">一个</option>   
-			<option value="2">两个</option>
-			<option value="3">一窝</option>
+		<label>小孩数量：</label><input value="${sessionScope.user.acc_chi}" readonly="true">
+			<select  id="acc_chi" class="easyui_combobx" style="width:70px" name="acc_chi">
+			<option value="0">0</option>   
+			<option value="1">1</option>   
+			<option value="2">2</option>
+			<option value="3">3</option>
 			</select><br>
-		<label>用户类型：</label><input  value="${sessionScope.user.type.t_type}" class="easyui-validatebox" type="text"  readonly="ture" / ><br>
-			<input type="submit" value="修改">
+		<label>用户类型：</label><input  value="${sessionScope.user.type.t_type}"  class="easyui-validatebox" type="text"  readonly="ture" / ><br>
+			<input type="submit" value="修改"> <input type="button" value="修改密码" id="query">
 		</form>
 	</div>
 	
+	
+	<div id="updateDlg" class="easyui-dialog" style="width:300px;height:300px" closed="true">
+		<input type="hidden" id="saveUrl">
+		<form id="updateForm" method="post" style="width:100%;height:100%" buttons="#update-dlg-btns">
+			<input type="hidden" name="uid">
+			<table align="center">
+				<tr>
+					<td><label>用户名：</label></td>
+					<td><input class="easyui-textbox" name="uname" id="uuname" data-options="required:true"/></td>
+				</tr>
+				<tr>
+					<td><label>用户密码：</label></td>
+					<td><input class="easyui-textbox" name="pwd" id="upwd"  required="true"/></td>
+				</tr>
+				
+			</table>
+			
+			<div id="update-dlg-btns" align="center">
+				<a href="javascript:void(0);" class="easyui-linkbutton" 
+					iconCls="icon-ok" onclick="update();" style="width:100px;height:30px" >保存</a>
+					<a href="javascript:void(0);" class="easyui-linkbutton" 
+					iconCls="icon-cancel" onclick="closeDlg();" style="width:100px;height:30px">取消</a>
+			</div>
+		</form>
+		
+	</div>
 </body>
 </html>

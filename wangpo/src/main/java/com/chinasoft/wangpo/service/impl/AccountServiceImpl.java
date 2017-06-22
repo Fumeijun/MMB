@@ -23,5 +23,11 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
 		return accountDao.addFriends(account);
 	}
 
+	@Override
+	public Account queryPer(Account account) {
+		// TODO Auto-generated method stub
+		return accountDao.queryPer(account);
+	}
 
+	
 }

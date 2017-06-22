@@ -34,10 +34,10 @@ public class AccountAction{
     //查看个人基本信息
     @RequestMapping("/perInf")
     public Account PerInf(HttpServletRequest req,HttpServletResponse resp,Account account) {
-    	
-    	accountService.select(account);//按名字查询个人所有信息
-    	req.getSession().setAttribute("user",account);
-		return account;
+    	Account account2=accountService.queryPer(account);
+    	req.getSession().setAttribute("user",account2);
+    	System.out.println(account2);
+		return account2;
 	}
     @RequestMapping("/perinfgg")
     //查看之后在修改个人信息
@@ -46,17 +46,15 @@ public class AccountAction{
     	System.err.println(account);
     	int a=accountService.updateByPK(account);//修改个人信息
     	if(a>=1){
-    		req.setAttribute("perinfgg", "修改成功");
     		PerInf(req, resp, account);
     		return "../jsp/user/userMian.jsp";
     	}else {
-    		req.setAttribute("perinfggs", "修改失败");
     		return "/wangpo/jsp/user/PerInf.jsp";
 		}
     
     }
     
-
+    
 
     @RequestMapping("/deleteList")
     @ResponseBody

@@ -1,5 +1,6 @@
 package com.chinasoft.wangpo.service;
 
+import com.chinasoft.wangpo.entity.Account;
 import com.chinasoft.wangpo.entity.Page;
 
 import java.util.List;
@@ -30,4 +31,5 @@ public interface BaseService <T>{
 
     //根据多条件分页查询
     public Page<T> selectPageUseDyc(Page<T> page);
+    
 }
