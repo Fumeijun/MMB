@@ -47,7 +47,7 @@
                             alert("请选择并且只能选择一条修改的记录！");
                             return false;
                         }
-
+                        //弹window窗体
                         parent.$('#win').window({
                             title:'用户信息',
                             width:600,
@@ -119,7 +119,7 @@
                     },'-',{
                         text:"<input type='text' id='rsta' name='rsta'/>"
                     }],
-
+                    //将查询的数据显示在数据网格中
                 columns:[[
                     {checkbox:true},
                     {field:'rid',title:'用户ID',width:100},
@@ -132,7 +132,7 @@
                     }
                 ]]
             });
-
+            //收索框
             $('#rsta').searchbox({
                 searcher:function(value,name){
                     alert(value)
@@ -141,6 +141,7 @@
                         rsta:value
                     });
                 },
+                //收索框默认值
                 prompt:'未审核:0,已审核:1'
             });
 

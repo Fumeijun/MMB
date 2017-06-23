@@ -162,7 +162,6 @@
                 return '%'+value+'%';
             }
         }
-
     </script>
 
 </head>
