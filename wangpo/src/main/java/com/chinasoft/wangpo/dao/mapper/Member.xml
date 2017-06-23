@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasoft.wangpo.dao.MemberDao">
+	<resultMap id="member" type="com.chinasoft.wangpo.entity.Type" >
+		<id column="acc_id" property="acc_id"/>
+		<result column="acc_lname" property="acc_lname" jdbcType="VARCHAR"/>
+		<result column="acc_rname" property="acc_rname" jdbcType="VARCHAR"/>
+		<result column="acc_gender" property="acc_gender" jdbcType="VARCHAR"/>
+		<result column="acc_pwd" property="acc_pwd" jdbcType="VARCHAR"/>
+		<result column="acc_age" property="acc_age" jdbcType="INTEGER"/>
+		<result column="acc_pro" property="acc_pro" jdbcType="VARCHAR"/>
+		<result column="acc_pay" property="acc_pay" jdbcType="VARCHAR"/>
+		<result column="acc_edu" property="acc_edu" jdbcType="VARCHAR"/>
+		<result column="acc_idno" property="acc_idno" jdbcType="VARCHAR"/>
+		<result column="acc_tel" property="acc_tel" jdbcType="VARCHAR"/>
+		<result column="acc_qq" property="acc_qq" jdbcType="VARCHAR"/>
+		<result column="acc_mail" property="acc_mail" jdbcType="VARCHAR"/>
+		<result column="acc_hob" property="acc_hob" jdbcType="VARCHAR"/>
+		<result column="acc_ava" property="acc_ava" jdbcType="VARCHAR"/>
+		<result column="acc_addr" property="acc_addr" jdbcType="VARCHAR"/>
+		<result column="acc_marr" property="acc_marr" jdbcType="VARCHAR"/>
+		<result column="acc_page" property="acc_page" jdbcType="VARCHAR"/>
+		<result column="acc_chi" property="acc_chi" jdbcType="INTEGER"/>
+		<result column="acc_sta" property="acc_sta" jdbcType="INTEGER"/>
+		<result column="acc_type" property="acc_type" jdbcType="INTEGER"/>
+		<association property="type" javaType="com.chinasoft.wangpo.entity.Type">
+			<id property="t_id" column="t_id"/>
+			<result property="t_type" column="t_type"/>
+			<result property="t_money" column="t_money"/>
+		</association>
+	</resultMap>
+	<select id="queryMember" parameterType="com.chinasoft.wangpo.entity.Page" resultMap="member">
+		select * from types limit #{start},#{rows}
+	</select>
+	<select id="queryCount" parameterType="com.chinasoft.wangpo.entity.Page" resultType="int">
+		select count(*) from types
+	</select>
+	<update id="ktMember">
+		UPDATE account SET acc_type=
+					(SELECT t_id FROM types WHERE t_money=#{_parameter}) 
+						WHERE acc_lname=#{acc_lname}
+	</update>
+</mapper>

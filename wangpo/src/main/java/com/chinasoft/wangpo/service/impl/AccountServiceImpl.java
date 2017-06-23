@@ -29,5 +29,20 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
 		return accountDao.queryPer(account);
 	}
 
+	@Override
+	public Account queryPwd(Account account) {
+		// TODO Auto-generated method stub
+		return accountDao.queryPwd(account);
+	}
+
+	@Override
+	public boolean updatePwd(Account account) {
+		int a=accountDao.updatePwd(account);
+		if(a>0){
+			return true;
+		}
+		return false;
+	}
+
 	
 }
