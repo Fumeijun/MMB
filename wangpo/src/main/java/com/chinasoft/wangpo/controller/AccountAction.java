@@ -3,7 +3,10 @@ package com.chinasoft.wangpo.controller;
 import com.chinasoft.wangpo.entity.Account;
 import com.chinasoft.wangpo.entity.Page;
 import com.chinasoft.wangpo.entity.Register;
+import com.chinasoft.wangpo.entity.Result;
 import com.chinasoft.wangpo.service.AccountService;
+import com.chinasoft.wangpo.util.Md5Util;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,8 +56,42 @@ public class AccountAction{
 		}
     
     }
-    
-    
+    	//查看密码是否匹配
+    	@RequestMapping("/queryPwd")
+    	@ResponseBody
+    	public Account queryPwd(HttpServletRequest req,HttpServletResponse resp,Account account){
+    		String st=account.getAcc_pwd();
+    		System.out.println("拿到的密码是："+st);
+    		String string=Md5Util.md5(st);
+    		Result result=new Result();
+    		Account account2=accountService.queryPer(account);
+    		String string2=accountService.queryPwd(account).getAcc_pwd();
+    		if (string==string2) {
+				result.setStatus(1);
+				updatePwd(req, resp, account2);
+				return account2;
+			}else{
+				result.setStatus(0);
+				result.setTip("查询错误");
+			}
+			return account2;
+    	}
+    	//修改密码
+    	@RequestMapping("/updatePwd")
+    	@ResponseBody
+    	public String updatePwd(HttpServletRequest req,HttpServletResponse resp,Account account){
+    		boolean flag=accountService.updatePwd(account);
+    		Result result=new Result();
+    		if (flag) {
+				result.setStatus(1);
+				result.setTip("修改成功");
+				return "../jsp/user/userMian.jsp";
+			}else {
+				result.setStatus(0);
+				result.setTip("修改失败");
+				return "../jsp/user/userMian.jsp";
+			}
+    	}
 
     @RequestMapping("/deleteList")
     @ResponseBody

@@ -3,72 +3,80 @@
 <%@include file="../../common/common.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>修改密码</title>
-</head>
 <script type="text/javascript">
-	
-	//判断两次密码是否一样
 	$(function(){
-		$("#uacc_pwd").blur(function(){
-			var pw=$("#uacc_pwd").val();
-			var rpw=$("#uacc_pwds").val();
-			if(pw==""){
+		 $('#dd').dialog({
+	            title: '修改窗口',
+	            width: 350,
+	            height: 250,
+	            closed: false,
+	            cache: false,
+	            modal: true,
+	            buttons:[{
+	                text:'确认',
+	                handler:function(){
+	                    //alert('提交登陆');
+	                    //启用验证
+	                    $('#ff').form("enableValidation");
+	                    //进行验证，如果通过（返回true)提交表单
+	                    if($('#ff').form('validate')){
+	                        $('#ff').submit();
+	                    }
+	                }
+	            },{
+	                text:'返回',
+	                handler:function(){
+	                    window.location.href="${proPath}/jsp/user/userMian.jsp";
+	                }
+	            }]
+	        });
+	        //禁用表单验证
+	        $('#ff').form("disableValidation");
+	})
+       
+  
+    $(function(){
+    	$("#uacc_pwds").blur(function(){
+    		var u=$("#uacc_pwd").val();
+    		var us=$("#uacc_pwds").val();
+    		if(u==""){
 				alert("请输入修改密码");
 				return;
 			}
-			if(rpw==""){
+			if(us==""){
 				alert("请输入确认密码");
 				return;
 			}
-			if(rpw != pw){
+			if(u != us){
 				alert("两次密码不一致,请重新输入");
 				return;
 			}
-		})
-	})
-	
-	function closeDlg(){
-			$("#updateForm").form("clear");
-			$("#updateDlg").dialog("close");
-		}
-		
+    	})
+    })
+    
 </script>
+
+</head>
+
 <body>
-	<div id="dd" class="easyui-dialog" style="width:300px;height:300px" closed="false">
-		<input type="hidden" id="saveUrl">
-		<form id="updateForm" method="post" style="width: 100%; height: 100%"
-			buttons="#update-dlg-btns">
-			<input type="hidden" name="uid">
-			<table align="center">
-				<tr>
-					<td><label>当前密码：</label></td>
-					<td><input class="easyui-textbox" name="acc_pwd" id="acc_pwd"
-						data-options="required:true" /></td>
-				</tr>
-				<tr>
-					<td><label>修改密码：</label></td>
-					<td><input class="easyui-textbox" name="uacc_pwd"
-						id="uacc_pwd" data-options="required:true"
-						validType="length[6,16]" class="easyui-validatebox"
-						type="password" /></td>
-				</tr>
-				<tr>
-					<td><label>确认密码：</label></td>
-					<td><input class="easyui-textbox" name="uacc_pwds"
-						id="uacc_pwds" data-options="required:true" class="easyui-validatebox"
-						validType="equalTo['#password']" invalidMessage="两次输入密码不匹配" /></td>
-				</tr>
-			</table>
-			<div id="update-dlg-btns" align="center">
-				<a href="javascript:void(0);" class="easyui-linkbutton"
-					iconCls="icon-ok" onclick="update();"
-					style="width: 100px; height: 30px">保存</a> 
-				<a href="javascript:void(0);" class="easyui-linkbutton"
-					iconCls="icon-cancel" onclick="closeDlg();"
-					style="width: 100px; height: 30px">取消</a>
-			</div>
-	</div>
+<div id="dd">
+    <form id="ff" action="${proPath}/account/queryPwd.do" method="post">
+        <div>
+            <%--@declare id="name"--%><label for="name">当前密码:</label>
+            <input class="easyui-validatebox" type="text" id="acc_pwd" name="acc_lname" data-options="required:true" />
+        </div>
+        <div>
+            <%--@declare id="email"--%><label for="email">修改密码:</label>
+            <input class="easyui-validatebox" type="text" id="uacc_pwd" name="uacc_pwd" data-options="required:true" />
+        </div>
+        <div>
+            <%--@declare id="email"--%><label for="email">确认密码:</label>
+            <input class="easyui-validatebox" type="text" id="uacc_pwds" name="uacc_pwds" data-options="required:true" />
+        </div>
+   		<div style="color:red" >${requestScope.errMsg}</div>
+    </form>
+</div>
 </body>
 </html>

@@ -17,4 +17,8 @@ public interface AccountDao extends BaseDao<Account> {
     
     //再次查询个人信息
     public Account queryPer(Account account);
+    //查看输入的密码是否匹配
+    public Account queryPwd(Account account);
+    //修改密码
+    public int updatePwd(Account account);
 }

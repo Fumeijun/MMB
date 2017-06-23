@@ -130,11 +130,13 @@
 		<form id="ff"  action="${proPath}/account/perinfgg.do" method="post" >
 		<input type="hidden"  name="acc_id" value="${sessionScope.user.acc_id}"><br>
 		<label>真实姓名：</label><input class="easyui-validatebox" type="text" name="acc_rname" data-options="required:true" value="${sessionScope.user.acc_rname}"/ ><br>
-		<%-- <label>修改密码：</label><input value="${sessionScope.user.acc_pwd}" id="password" name="password" validType="length[6,16]" 
+		<%--
+			 <label>修改密码：</label><input value="${sessionScope.user.acc_pwd}" id="password" name="password" validType="length[6,16]" 
 					class="easyui-validatebox"  type="password"  /> <br> 
-		<label>确认密码：</label><input type="password" name="acc_pwd" id="acc_pwd" 
-					class="easyui-validatebox"  validType="equalTo['#password']" invalidMessage="两次输入密码不匹配"/><br>--%>
-		<label>用&nbsp&nbsp户&nbsp 名：</label><input value="${sessionScope.user.acc_lname}" class="easyui-validatebox" type="text" name="acc_lname" readonly="ture" / ><br> 
+			<label>确认密码：</label><input value="${sessionScope.user.acc_pwd}" type="password" name="acc_pwd" id="acc_pwd" 
+					class="easyui-validatebox"  validType="equalTo['#password']" invalidMessage="两次输入密码不匹配"/><br>
+		 --%>
+		 <label>用&nbsp&nbsp户&nbsp 名：</label><input value="${sessionScope.user.acc_lname}" class="easyui-validatebox" type="text" name="acc_lname" readonly="ture" / ><br> 
 		<label>性&nbsp&nbsp&nbsp&nbsp&nbsp别：</label><input value="${sessionScope.user.acc_gender}" readonly="ture">
 		<select  id="acc_gender" class="easyui_combobx" style="width:70px" name="acc_gender">
 			<option value="男">男</option>   

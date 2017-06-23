@@ -7,11 +7,6 @@
 <title>Login page</title>
 <script type="text/javascript">
     $(function(){
-    	var ss=$("#code").val();
-    	if(ss==null){
-    		arlt("书屋的");
-    	}
-    	
         $('#dd').dialog({
             title: '登陆窗口',
             width: 350,
@@ -72,12 +67,11 @@
             <%--@declare id="email"--%><label for="email">密码:</label>
             <input class="easyui-validatebox" type="text" name="acc_pwd" data-options="required:true" />
         </div>
-        <div style="color:red" >${requestScope.errMsg}</div>
-        
-     	<td>验证码：</td><td valign="bottom"><input type="text" name="vercode" size="10" id="code" class="easyui-validatebox"/> 
+     	<td>验证码：</td><td valign="bottom"><input data-options="required:true" type="text" name="vercode" size="10"  class="easyui-validatebox"/> 
      	<img alt="" src="${proPath}/vacode/getVacode.do" mce_src="authImg" id="authImg" align="absmiddle">
      	<a href="javascript:void(0)" mce_href="#" onclick="refresh()">
      	<span style="font-size:12px" mce_style="font-size:12px">看不清楚？点我呀</span></a></td>
+   		 <div style="color:red" >${requestScope.errMsg}</div>
     </form>
 </div>
 </body>

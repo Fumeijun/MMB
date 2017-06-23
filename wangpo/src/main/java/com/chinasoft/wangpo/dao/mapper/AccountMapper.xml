@@ -94,6 +94,12 @@
 				acc_marr=#{acc_marr},acc_chi=#{acc_chi}
 				 where acc_id=#{acc_id}
 	</update>
+	<select id="queryPwd" parameterType="account" resultMap="accountResults">
+		select * from account where acc_id=#{acc_id}
+	</select>
 	
+	<update id="udpatePwd" parameterType="account">
+		update account set acc_pwd=#{uacc_pwds} where acc_id=#{acc_id}
+	</update>
 
 </mapper>
