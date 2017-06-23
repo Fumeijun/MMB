@@ -151,7 +151,6 @@
                 return '%'+value+'%';
             }
         }
-
     </script>
 
 </head>
