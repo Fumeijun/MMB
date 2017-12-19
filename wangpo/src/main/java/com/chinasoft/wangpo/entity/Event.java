@@ -7,79 +7,79 @@ import java.util.List;
  *         date 2017-06-15 14:47
  */
 public class Event {
-    private Integer e_id; //活动ID
-    private Account e_acc; //发起账号
-    private String e_atime; //申请时间
-    private String e_sta; //活动状态
-    private String e_stime="CURDATE()"; //活动开始时间
-    private String e_type; //活动类型
-    private Integer e_maxqua; //活动最大人数
-    private String e_model; // 活动模式
-    private List<Account> eact; //参加人员名单
-    private String e_remark; //备注
+    private Integer eId;
+    private Account eAcc;
+    private String eAtime;
+    private String eSta;
+    private String eStime ="CURDATE()";
+    private String eType;
+    private Integer eMaxqua;
+    private String eModel;
+    private List<Account> eact;
+    private String eRemark; //备注
 
-    public Integer getE_id() {
-        return e_id;
+    public Integer geteId() {
+        return eId;
     }
 
-    public void setE_id(Integer e_id) {
-        this.e_id = e_id;
+    public void seteId(Integer eId) {
+        this.eId = eId;
     }
 
-    public Account getE_acc() {
-        return e_acc;
+    public Account geteAcc() {
+        return eAcc;
     }
 
-    public void setE_acc(Account e_acc) {
-        this.e_acc = e_acc;
+    public void seteAcc(Account eAcc) {
+        this.eAcc = eAcc;
     }
 
-    public String getE_atime() {
-        return e_atime;
+    public String geteAtime() {
+        return eAtime;
     }
 
-    public void setE_atime(String e_atime) {
-        this.e_atime = e_atime;
+    public void seteAtime(String eAtime) {
+        this.eAtime = eAtime;
     }
 
-    public String getE_sta() {
-        return e_sta;
+    public String geteSta() {
+        return eSta;
     }
 
-    public void setE_sta(String e_sta) {
-        this.e_sta = e_sta;
+    public void seteSta(String eSta) {
+        this.eSta = eSta;
     }
 
-    public String getE_stime() {
-        return e_stime;
+    public String geteStime() {
+        return eStime;
     }
 
-    public void setE_stime(String e_stime) {
-        this.e_stime = e_stime;
+    public void seteStime(String eStime) {
+        this.eStime = eStime;
     }
 
-    public String getE_type() {
-        return e_type;
+    public String geteType() {
+        return eType;
     }
 
-    public void setE_type(String e_type) {
-        this.e_type = e_type;
+    public void seteType(String eType) {
+        this.eType = eType;
     }
 
-    public Integer getE_maxqua() {
-        return e_maxqua;
+    public Integer geteMaxqua() {
+        return eMaxqua;
     }
 
-    public void setE_maxqua(Integer e_maxqua) {
-        this.e_maxqua = e_maxqua;
+    public void seteMaxqua(Integer eMaxqua) {
+        this.eMaxqua = eMaxqua;
     }
 
-    public String getE_model() {
-        return e_model;
+    public String geteModel() {
+        return eModel;
     }
 
-    public void setE_model(String e_model) {
-        this.e_model = e_model;
+    public void seteModel(String eModel) {
+        this.eModel = eModel;
     }
 
     public List<Account> getEact() {
@@ -90,27 +90,27 @@ public class Event {
         this.eact = eact;
     }
 
-    public String getE_remark() {
-        return e_remark;
+    public String geteRemark() {
+        return eRemark;
     }
 
-    public void setE_remark(String e_remark) {
-        this.e_remark = e_remark;
+    public void seteRemark(String eRemark) {
+        this.eRemark = eRemark;
     }
 
     @Override
     public String toString() {
         return "Event{" +
-                "e_id=" + e_id +
-                ", e_acc=" + e_acc +
-                ", e_atime='" + e_atime + '\'' +
-                ", e_sta='" + e_sta + '\'' +
-                ", e_stime='" + e_stime + '\'' +
-                ", e_type='" + e_type + '\'' +
-                ", e_maxqua=" + e_maxqua +
-                ", e_model='" + e_model + '\'' +
+                "e_id=" + eId +
+                ", e_acc=" + eAcc +
+                ", e_atime='" + eAtime + '\'' +
+                ", e_sta='" + eSta + '\'' +
+                ", e_stime='" + eStime  + '\'' +
+                ", e_type='" + eType + '\'' +
+                ", e_maxqua=" + eMaxqua +
+                ", e_model='" + eModel + '\'' +
                 ", eact=" + eact +
-                ", e_remark='" + e_remark + '\'' +
+                ", e_remark='" + eRemark + '\'' +
                 '}';
     }
 }

@@ -60,12 +60,12 @@ public class AccountAction{
     	@RequestMapping("/queryPwd")
     	@ResponseBody
     	public Account queryPwd(HttpServletRequest req,HttpServletResponse resp,Account account){
-    		String st=account.getAcc_pwd();
+    		String st=account.getAccPwd();
     		System.out.println("拿到的密码是："+st);
     		String string=Md5Util.md5(st);
     		Result result=new Result();
     		Account account2=accountService.queryPer(account);
-    		String string2=accountService.queryPwd(account).getAcc_pwd();
+    		String string2=accountService.queryPwd(account).getAccPwd();
     		if (string==string2) {
 				result.setStatus(1);
 				updatePwd(req, resp, account2);
@@ -110,7 +110,7 @@ public class AccountAction{
     public Integer checkByPK(Account account){
         return accountService.checkByPK(account);
     }
-   
-    
+
+
 
 }

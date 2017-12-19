@@ -15,27 +15,19 @@ import org.springframework.stereotype.Service;
 @Service("accountService")
 public class AccountServiceImpl extends BaseServiceImpl<Account> implements AccountService{
 
-
-	@Override
 	public Account addFriends(Account account) {
-		// TODO Auto-generated method stub
 		System.out.println("jksd"+account);
 		return accountDao.addFriends(account);
 	}
 
-	@Override
 	public Account queryPer(Account account) {
-		// TODO Auto-generated method stub
 		return accountDao.queryPer(account);
 	}
 
-	@Override
 	public Account queryPwd(Account account) {
-		// TODO Auto-generated method stub
 		return accountDao.queryPwd(account);
 	}
 
-	@Override
 	public boolean updatePwd(Account account) {
 		int a=accountDao.updatePwd(account);
 		if(a>0){
@@ -43,6 +35,4 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
 		}
 		return false;
 	}
-
-	
 }

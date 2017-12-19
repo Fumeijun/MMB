@@ -16,11 +16,8 @@ public interface AccountService extends BaseService<Account> {
      * 用户
      */
 
-    public Account addFriends(Account account);
-
-    public Account queryPer(Account account);
-    //查看输入的密码是否匹配
-    public Account queryPwd(Account account);
-    //修改密码
-    public boolean updatePwd(Account account);
+     Account addFriends(Account account);
+     Account queryPer(Account account);
+     Account queryPwd(Account account);
+     boolean updatePwd(Account account);
 }

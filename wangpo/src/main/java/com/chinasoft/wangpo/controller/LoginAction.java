@@ -28,18 +28,8 @@ public class LoginAction {
 	   
 		@RequestMapping("/user")
 	    public String userLogin(HttpServletRequest req, HttpServletResponse resp,Account account){
-	    	/*//获取时间
-	    	Data d=new Data();
-	    	SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd HH:mm:ss");
-	    	String d2=sdf.format(d);//将当前时间写成标准的时间格式的字符串
-	    	try {
-				Date data=sdf.parse(d2);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
-	    	
-	    	String pwd=account.getAcc_pwd();
+
+	    	String pwd=account.getAccPwd();
 	        String md5=Md5Util.md5(pwd);
 	        Account account2=userLoginService.accountLogin(account);
 	        if(account2==null){
@@ -47,21 +37,21 @@ public class LoginAction {
 				return "../login.jsp";
 	        }
 	        
-	        int a=account2.getAcc_sta();  //从查询结果中拿出输入错误的次数
-	        System.out.println(md5.equals(account2.getAcc_pwd()));
+	        int a=account2.getAccSta();  //从查询结果中拿出输入错误的次数
+	        System.out.println(md5.equals(account2.getAccPwd()));
 	        	//把输入的密码进行加密后与account的密码进行比较
 	    
 	        if (a<3) {
-        		if(md5.equals(account2.getAcc_pwd())){
+        		if(md5.equals(account2.getAccPwd())){
         			a=0;
-	        		account2.setAcc_sta(a);  //登陆成功后次数清零
+	        		account2.setAccSta(a);  //登陆成功后次数清零
 	        		userLoginService.accountAddCisu(account2);
 	        		req.getSession().setAttribute("user",account2);
 		        	System.out.println("登陆成功");
 		        	 return "../jsp/user/userMian.jsp";
         		}else{
         			a++;  
-        			account2.setAcc_sta(a);  //输入密码失败时，失败次数+1
+        			account2.setAccSta(a);  //输入密码失败时，失败次数+1
         			userLoginService.accountAddCisu(account2);
         			req.setAttribute("errMsg", "您输入的密码错误");
         			System.out.println("a的值为"+a);
